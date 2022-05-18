@@ -1,0 +1,7 @@
+{{ form_start(form) }}
+    {{ form_row(form.izena)}}
+<div style="display: none;">
+    {{ form_row(form.udala) }}
+    <button id="crudSubmitButton" class="btn">{{ button_label|default(' Savesss') }}</button>
+</div>
+{{ form_end(form) }}

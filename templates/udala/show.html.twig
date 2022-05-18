@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Udala{% endblock %}
+
+{% block body %}
+    <h1>Udala</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ udala.id }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_udala_index') }}">back to list</a>
+
+    <a href="{{ path('app_udala_edit', {'id': udala.id}) }}">edit</a>
+
+    {{ include('udala/_delete_form.html.twig') }}
+{% endblock %}

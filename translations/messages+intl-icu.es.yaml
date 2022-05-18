@@ -1,0 +1,81 @@
+backend.global.welcome: __backend.global.welcome
+'Ziur ezabatu nahi duzula?': '¿Estas seguro de que quieres eliminar?'
+Ezabatu: Borrar
+form.user.name: Nombre
+form.user.surname: Apellidos
+form.user.email: Email
+form.user.username: 'Nombre de usuario'
+form.user.role: Rol
+form.user.manager: '¿Es administrador?'
+form.edit: Editar
+form.delete: Eliminar
+form.user.change-password: 'Cambiar contraseña'
+form.user.ismanager: '¿Es administrador?'
+form.user.password: Contraseña
+form.user.password-repeat: 'Repite contraseña'
+form.user.udala: Ayuntamiento
+form.user.aukera: 'Selecciona uno'
+Kodea: Código
+Erregistroa: Registro
+Bastidorea: Bastidor
+Editatu: Editar
+'Ez dago daturik erakusteko': 'No hay datos para mostrar'
+'Arazoren bat egon da. Jarri harremanetan Pasaia Udaleko informatika sailarekin': 'Ha ocurrido un error. Ponte en contacto con el servicio informático del Ayuntamiento de Pasaia'
+'Access denied': 'Acceso denegado'
+'Ez duzu baimenik ekintza hau burutzeko': 'No tienes permiso para realizar esta operación.'
+Itzuli: Volver
+Ayuntamientos: Ayuntamientos
+Erabiltzaileak: Usuarios
+Guneak: Zonas
+Bizikletak: Bicicletas
+Ibilbideak: Recorridos
+'Oroitu nazazu': Recuerdame
+'Udalen Mantenua': 'Mantenimiento de Ayuntamientos'
+'Guneen mantenua': 'Mantenimiento de zonas'
+Izena: Nombre
+Helbidea: Dirección
+Ordutegia: Horario
+Latitudea: Latitud
+Longitudea: Longitud
+'Ibilbideen Mantenua': 'Mantenimiento de recorridos'
+Aukerak: Opciones
+'Amaitu saioa': 'Cerrar sesión'
+'Erabiltzaileen Mantenua': 'Mantenimiento de usarios'
+Udala: Ayuntamiento
+Erabiltzaile: Usuario
+berria: nuevo
+'pasahitza aldatzen': 'cambiando contraseña'
+Menua: Menú
+'Taula laguntzaileak': 'Tablas auxiliares'
+Eguraldiak: Meteorologia
+Zigorrak: Sanciones
+'Zigorren mantenua': 'Mantenimiento de Sanciones'
+Zigor: Sanción
+editatzen: editando
+'Gune berria': 'Nueva zona'
+'Eguraldien mantenua': 'Mantenimiento de Meteorología'
+'Eguraldi berria': 'Nuevo'
+Maileguak: Prestamos
+'Maileguen Mantenua': 'Mantenimiento de Prestamos'
+'Maileguaren itzulketa': 'Devolución de Prestamo'
+Mailegua: Prestamo
+Itzulketa: Devolución
+Zerrenda: Listado
+'Maileguen mantenua': 'Mantenimiento de Prestamos'
+Mailegu: prestamo
+'Maileguaren Hasiera': 'Inicio prestamo'
+Erabiltzailea: Usuario
+'Hasierako gunea': 'Zona inicio'
+Bizikleta: Bicicleta
+Aukeratu: Seleccionar
+Egunak: Días
+Zenbatekoa: Importe
+'Alokatzea galarazi': 'Desautorizar prestamos'
+'erabiltzailearen zigor historiala': 'Historial de sanciones'
+Zigorra: Sanción
+Hasi: Inicio
+Amaitu: Fin
+'Eguraldien Mantenua': 'Mantenimiento de Meteorología'
+form.user.canRent: ¿Puede alquilar?
+form.user.zigorra: Sanciones
+'BERRIA': 'NUEVO'

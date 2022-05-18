@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Udala{% endblock %}
+
+{% block body %}
+    <h1>Edit Udala</h1>
+
+    {{ include('udala/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_udala_index') }}">back to list</a>
+
+    {{ include('udala/_delete_form.html.twig', {'udalaid': udala.id}) }}
+{% endblock %}

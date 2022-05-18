@@ -1,0 +1,111 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ "Erabiltzaileen Mantenua" | trans}}{% endblock %}
+
+{% block body %}
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>{{ "Erabiltzaileen Mantenua" | trans}}</small></h3>
+        </div>
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row" style="display: block;">
+        <div class="col-md-12 col-sm-12 ">
+            <div class="x_panel">
+                <div class="x_title">
+                    <a id="btnNew" href="{{ path('app_user_new') }}" class="btn btn-success "><i class="fa fa-plus-square"></i> {{ "BERRIA" | trans}}</a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br>
+                    <table class="table table-striped projects datatable">
+                        <thead>
+                            <tr>
+                                <th>{{ "form.user.name" | trans}}</th>
+                                <th>{{ "form.user.surname" | trans}}</th>
+                                <th>{{ "form.user.canRent" | trans}}</th>
+                                <th>{{ "form.user.zigorra" | trans}}</th>
+                                <th>{{ "form.user.role" | trans}}</th>
+                                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                    <th>{{ "Udala" | trans}}</th>
+                                {% endif %}
+                                <th style="width: 20%"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in users %}
+                            <tr>
+                                <td>{{ user.name }}</td>
+                                <td>{{ user.surname }}</td>
+                                <td class="text-center">
+                                    {% if user.canRent %}
+                                        <span class="label label-success">Bai</span>
+                                    {% else %}
+                                        <span class="label label-danger">Ez</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    <a href="{{ path('app_erabiltzaile_zigorra_user', { 'userid': user.id }) }}">
+                                    {% if user.zigorrak | length > 0 %}
+                                        {% set zigorra = user.zigorrak|last %}
+                                        {% if zigorra.dateEnd > date() %}
+                                            <span class="label label-danger">{{ zigorra.dateEnd | date('Y-m-d') }}</span>
+                                        {% else %}
+                                            <span class="label label-success">Bai</span>
+                                        {% endif %}
+                                    {% else %}
+                                        <span class="label label-danger">Ez</span>
+                                    {% endif %}
+                                    </a>
+                                </td>
+                                <td>
+                                    {% if 'ROLE_SUPER_ADMIN' in user.roles %}
+                                        <span class="label label-default">{{ "Super Administratzailea" | trans}}</span>
+                                    {% elseif 'ROLE_ADMIN' in user.roles %}
+                                        <span class="label label-default">{{ "Administratzailea" | trans}}</span>
+                                    {% elseif 'ROLE_KUDEATU' in user.roles %}
+                                        <span class="label label-default">{{ "Kudeatzailea" | trans}}</span>
+                                    {% endif %}
+                                </td>
+                                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                    <td>{{user.udala}}</td>
+                                {% endif %}
+                                <td class="text-center">
+
+                                    <a class="btn btn-primary btn-xs" href="{{ path('app_user_edit', {'id': user.id}) }}"
+                                       data-toggle="tooltip" data-placement="top" title="{{ 'Editatu' | trans }}">
+                                        <i class="fa fa-pencil"></i>
+                                    </a>
+
+                                    <a class="btn btn-primary btn-xs" href="{{ path('app_erabiltzaile_zigorra_user', { 'userid': user.id }) }}"
+                                       data-toggle="tooltip" data-placement="top" title="{{ 'Zigorrak' | trans }}">
+                                        <i class="fa-solid fa-book-skull"></i>
+                                    </a>
+
+                                    {{ include('user/_delete_form.html.twig') }}
+
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="9">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

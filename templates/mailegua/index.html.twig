@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ "Maileguen Mantenua" | trans}}{% endblock %}
+
+{% block body %}
+
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>{{ "Maileguen Mantenua" | trans}}</h3>
+            </div>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row" style="display: block;">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br>
+
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 text-center">
+                                <a class="btn btn-block btn-primary btn-lg" href="{{path('app_mailegua_hasi')}}">{{ "Mailegua" | trans}}</a>
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+
+                        <div class="row">&nbsp;</div>
+                        <div class="row">&nbsp;</div>
+
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 text-center">
+                                <a class="btn btn-block btn-success btn-lg" href="{{path('app_mailegua_itzulketa')}}">{{ "Itzulketa" | trans}}</a>
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+
+
+                        <div class="row">&nbsp;</div>
+                        <div class="row">&nbsp;</div>
+                        <hr>
+
+                        <div class="row">
+                            <div class="col-md-4"></div>
+                            <div class="col-md-4 text-center">
+                                <a class="" href="{{path('app_mailegua_list')}}">{{ "Zerrenda" | trans}}</a>
+                            </div>
+                            <div class="col-md-4"></div>
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

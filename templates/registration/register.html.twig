@@ -1,0 +1,54 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Udalen mantenua{% endblock %}
+
+{% block body %}
+
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>Arduradun <small>berria</small></h3>
+            </div>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row" style="display: block;">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <ul class="list-inline">
+                            <li><a id="btnSaveButton" href="javascript: void(0)" class="btn btn-success "><i class="fa fa-save"></i> GORDE</a></li>
+                        </ul>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br>
+                        {{ form_start(registrationForm) }}
+                        {{ form_row(registrationForm.name) }}
+                        {{ form_row(registrationForm.surname) }}
+                        {{ form_row(registrationForm.email) }}
+                        {{ form_row(registrationForm.username) }}
+                        {{ form_row(registrationForm.plainPassword, {
+                            label: 'Password'
+                        }) }}
+                        {{ form_row(registrationForm.isManager)}}
+
+                        <div style="display: none">
+                            <button id="crudSubmitButton" type="submit" class="btn">Register</button>
+                        </div>
+
+                        {{ form_end(registrationForm) }}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

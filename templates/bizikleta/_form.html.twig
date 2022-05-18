@@ -1,0 +1,10 @@
+{{ form_start(form) }}
+    {{ form_row(form.code) }}
+    {{ form_row(form.erregistroa) }}
+    {{ form_row(form.bastidorea) }}
+    {{ form_row(form.gunea) }}
+<div style="display: none;">
+    {{ form_row(form.udala) }}
+    <button id="crudSubmitButton" class="btn">{{ button_label|default(' Savesss') }}</button>
+</div>
+{{ form_end(form) }}

@@ -1,0 +1,112 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ "Maileguen Mantenua" | trans}}{% endblock %}
+
+{% block body %}
+
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>{{ "Maileguaren itzulketa" | trans}}</h3>
+            </div>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row" style="display: block;">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br>
+
+                        <h5>Maileguaren bilaketa</h5>
+
+                        {{ include('mailegua/_form_finder.html.twig') }}
+
+                        <div class="row">&nbsp;</div>
+                        {% if  finderMaileguak is defined%}
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th style="width: 5%;">#</th>
+                                    <th style="width: 15%">{{ "Maileguaren Hasiera" | trans}}</th>
+                                    <th>{{ "Erabiltzailea" | trans}}</th>
+                                    <th>{{ "Hasierako gunea" | trans}}</th>
+                                    <th>{{ "Bizikleta" | trans}}</th>
+                                    <th style="width: 20%"></th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                {% for mailegua in finderMaileguak %}
+                                    <tr>
+                                        <td>{{ mailegua.id }}</td>
+                                        <td>{{ mailegua.dateStart ? mailegua.dateStart|date('Y-m-d H:i:s') : '' }}</td>
+                                        <td>{{ mailegua.erabiltzailea }}</td>
+                                        <td>{{ mailegua.startGunea }}</td>
+                                        <td>{{ mailegua.bizikleta }}</td>
+                                        <td>
+                                            <a class="btn btn-primary" href="{{ path('app_mailegua_itzuli', { 'id': mailegua.id}) }}"><i class="fa-solid fa-arrow-rotate-left"></i> {{ "Aukeratu" | trans}}</a>
+                                        </td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td colspan="6">{{ "Ez dago daturik erakusteko" | trans}}</td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        {% endif %}
+                        <hr>
+
+                        <h5 >Azken maileguak</h5>
+                        <div class="row">&nbsp;</div>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th style="width: 5%;">#</th>
+                                <th style="width: 15%">{{ "Maileguaren Hasiera" | trans}}</th>
+                                <th>{{ "Erabiltzailea" | trans}}</th>
+                                <th>{{ "Hasierako gunea" | trans}}</th>
+                                <th>{{ "Bizikleta" | trans}}</th>
+                                <th style="width: 20%"></th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for mailegua in lastMaileguak %}
+                                <tr>
+                                    <td>{{ mailegua.id }}</td>
+                                    <td>{{ mailegua.dateStart ? mailegua.dateStart|date('Y-m-d H:i:s') : '' }}</td>
+                                    <td>{{ mailegua.erabiltzailea }}</td>
+                                    <td>{{ mailegua.startGunea }}</td>
+                                    <td>{{ mailegua.bizikleta }}</td>
+                                    <td>
+                                        <a class="btn btn-primary" href="{{ path('app_mailegua_itzuli', { 'id': mailegua.id}) }}"><i class="fa-solid fa-arrow-rotate-left"></i> {{ "Aukeratu" | trans}}</a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="6">no records found</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+
+
+
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock %}

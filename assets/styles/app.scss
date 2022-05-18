@@ -1,0 +1,28 @@
+@import "bootstrap";
+@import "font-awesome";
+@import "nprogress/nprogress.css";
+@import "icheck/skins/flat/green.css";
+@import "bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css";
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import '~@fortawesome/fontawesome-free/scss/brands';
+@import "../lib/bootstrap-daterangepicker/css/bootstrap-datetimepicker.css";
+@import "datatables.net-dt/css/jquery.dataTables.min.css";
+@import "select2/dist/css/select2.min.css";
+@import "select2-bootstrap-theme/dist/select2-bootstrap.min.css";
+@import "gentella.css";
+
+.x_title {
+  text-align: end !important;
+}
+
+.w600 {
+  width: 600px !important;
+}
+
+.form-control-inline {
+  min-width: 0;
+  width: auto;
+  display: inline;
+}

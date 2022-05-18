@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Bizikleta{% endblock %}
+
+{% block body %}
+    <h1>Bizikleta</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ bizikletum.id }}</td>
+            </tr>
+            <tr>
+                <th>Code</th>
+                <td>{{ bizikletum.code }}</td>
+            </tr>
+            <tr>
+                <th>Erregistroa</th>
+                <td>{{ bizikletum.erregistroa }}</td>
+            </tr>
+            <tr>
+                <th>Bastidorea</th>
+                <td>{{ bizikletum.bastidorea }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ bizikletum.createdAt ? bizikletum.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ bizikletum.updatedAt ? bizikletum.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_bizikleta_index') }}">back to list</a>
+
+    <a href="{{ path('app_bizikleta_edit', {'id': bizikletum.id}) }}">edit</a>
+
+    {{ include('bizikleta/_delete_form.html.twig') }}
+{% endblock %}

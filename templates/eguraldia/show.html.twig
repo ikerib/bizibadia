@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Eguraldia{% endblock %}
+
+{% block body %}
+    <h1>Eguraldia</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ eguraldium.id }}</td>
+            </tr>
+            <tr>
+                <th>Izena</th>
+                <td>{{ eguraldium.izena }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_eguraldia_index') }}">back to list</a>
+
+    <a href="{{ path('app_eguraldia_edit', {'id': eguraldium.id}) }}">edit</a>
+
+    {{ include('eguraldia/_delete_form.html.twig') }}
+{% endblock %}

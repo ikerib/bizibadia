@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="eu">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <!-- Meta, title, CSS, favicons, etc. -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="icon" href="images/favicon.ico" type="image/ico" />
+        <title>{% block title %}{{ "backend.global.welcome"|trans }}{% endblock %}</title>
+        {% block stylesheets %}
+            {{ encore_entry_link_tags('app') }}
+            {{ encore_entry_link_tags('cssGentella') }}
+        {% endblock %}
+
+    </head>
+    <body class="nav-md">
+    <div class="container body">
+        <div class="main_container">
+            <!-- page content -->
+
+                <div>
+                    {%block body%}{%endblock%}
+                </div>
+
+            <!-- /page content -->
+
+            <!-- footer content -->
+            {% block footer %}
+            <footer>
+                <div class="pull-right">
+                    <a href="https://pasaia.eus" target="_blank">Pasaiakoa Udala 2022</a>
+                </div>
+                <div class="clearfix"></div>
+            </footer>
+            {% endblock %}
+            <!-- /footer content -->
+        </div>
+    </div>
+
+    {% block javascripts %}
+            {{ encore_entry_script_tags('app') }}
+            {{ encore_entry_script_tags('gentella') }}
+    {% endblock %}
+    </body>
+</html>

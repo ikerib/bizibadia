@@ -1,0 +1,18 @@
+<style>
+    .clearfix::after, form::after {
+        content: ".";
+        display: inline !important;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+</style>
+<form method="post"
+      action="{{ path('app_ibilbidea_delete', {'id': ibilbidea.id}) }}"
+      class="form-control-inline"
+      onsubmit="return confirm('{{ "form.delete" | trans}}');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ ibilbidea.id) }}">
+    <button class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="{{ 'Ezabatu' | trans }}">
+        <i class="fa fa-trash"></i>
+    </button>
+</form>

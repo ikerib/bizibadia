@@ -1,0 +1,47 @@
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+{{ form_start(form) }}
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            {{ form_row(form.dateStart) }}
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            {{ form_row(form.erabiltzailea) }}
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            {{ form_row(form.bizikleta) }}
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            {{ form_row(form.startGunea) }}
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+
+<div class="row">
+    <div class="col-4"></div>
+    <div class="col-4 text-center">
+        <button id="crudSubmitButton" class="btn"><i class="fa fa-search"></i> {{ button_label|default(' Bilatu') }}</button>
+    </div>
+    <div class="col-4"></div>
+</div>
+
+
+
+{{ form_end(form)}}

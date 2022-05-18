@@ -1,0 +1,25 @@
+<style>
+    .clearfix::after, form::after {
+        content: ".";
+        display: inline !important;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    }
+</style>
+{#<form method="post" action="{{ path('app_udala_delete', {'id': udalaid}) }}"#}
+{#      onsubmit="return confirm('{{ "Ziur ezabatu nahi duzula?" | trans}}');">#}
+{#    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ udalaid) }}">#}
+{#    <button class="btn btn-xs btn-danger"><i class="fa fa-trash"><i/>{{ "Ezabatu" | trans}}</button>#}
+{#    <button class="btn btn-xs btn-danger"><i class="fa fa-trash"></i> {{"Ezabatu"|trans}}</button>#}
+{#</form>#}
+<form method="post"
+      action="{{ path('app_udala_delete', {'id': udalaid}) }}"
+      class="form-control-inline"
+      onsubmit="return confirm('{{ "form.delete" | trans}}');">
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ udalaid) }}">
+    <button class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="{{ 'Ezabatu' | trans }}">
+        <i class="fa fa-trash"></i>
+    </button>
+</form>
+

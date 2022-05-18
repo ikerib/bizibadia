@@ -1,0 +1,81 @@
+backend.global.welcome: backend.global.welcome
+'Ziur ezabatu nahi duzula?': 'Ziur ezabatu nahi duzula?'
+Ezabatu: Ezabatu
+form.user.name: Izena
+form.user.surname: Abizenak
+form.user.email: Emaila
+form.user.username: 'Erabiltzaile izena'
+form.user.role: Rola
+form.user.manager: 'Administraria da?'
+form.edit: Editatu
+form.delete: Ezabatu
+form.user.change-password: 'Aldatu pasahitza'
+form.user.language: Hizkuntza
+form.user.ismanager: 'Administraria da?'
+form.user.password: Pasahitza
+form.user.password-repeat: 'Errepikatu pasahitza'
+form.user.udala: Udala
+form.user.aukera: 'Aukeratu bat'
+Kodea: Kodea
+Erregistroa: Erregistroa
+Bastidorea: Bastidorea
+Editatu: Editatu
+'Ez dago daturik erakusteko': 'Ez dago daturik erakusteko'
+'Arazoren bat egon da. Jarri harremanetan Pasaia Udaleko informatika sailarekin': 'Arazoren bat egon da. Jarri harremanetan Pasaia Udaleko informatika sailarekin'
+'Access denied': 'Access denied'
+'Ez duzu baimenik ekintza hau burutzeko': 'Ez duzu baimenik ekintza hau burutzeko'
+Itzuli: Itzuli
+Ayuntamientos: Ayuntamientos
+Erabiltzaileak: Erabiltzaileak
+Guneak: Guneak
+Bizikletak: Bizikletak
+Ibilbideak: Ibilbideak
+'Oroitu nazazu': 'Oroitu nazazu'
+'Udalen Mantenua': 'Udalen Mantenua'
+'Guneen mantenua': 'Guneen mantenua'
+Izena: Izena
+Helbidea: Helbidea
+Ordutegia: Ordutegia
+Latitudea: Latitudea
+Longitudea: Longitudea
+'Ibilbideen Mantenua': 'Ibilbideen Mantenua'
+Aukerak: Aukerak
+'Amaitu saioa': 'Amaitu saioa'
+'Erabiltzaileen Mantenua': 'Erabiltzaileen Mantenua'
+Udala: Udala
+Erabiltzaile: Erabiltzaile
+berria: berria
+'pasahitza aldatzen': 'pasahitza aldatzen'
+Menua: Menua
+'Taula laguntzaileak': 'Taula laguntzaileak'
+Eguraldiak: Eguraldiak
+Zigorrak: Zigorrak
+'Zigorren mantenua': 'Zigorren mantenua'
+Zigor: Zigor
+editatzen: editatzen
+'Gune berria': 'Gune berria'
+'Eguraldien mantenua': 'Eguraldien mantenua'
+'Eguraldien Mantenua': 'Eguraldien Mantenua'
+'Eguraldi berria': 'Eguraldi berria'
+Maileguak: Maileguak
+'Maileguen Mantenua': 'Maileguen Mantenua'
+'Maileguaren itzulketa': 'Maileguaren itzulketa'
+Mailegua: Mailegua
+Itzulketa: Itzulketa
+Zerrenda: Zerrenda
+'Maileguen mantenua': 'Maileguen mantenua'
+Mailegu: Mailegu
+'Maileguaren Hasiera': 'Maileguaren Hasiera'
+Erabiltzailea: Erabiltzailea
+'Hasierako gunea': 'Hasierako gunea'
+Bizikleta: Bizikleta
+Aukeratu: Aukeratu
+Egunak: Egunak
+Zenbatekoa: Zenbatekoa
+'Alokatzea galarazi': 'Alokatzea galarazi'
+'erabiltzailearen zigor historiala': 'erabiltzailearen zigor historiala'
+Zigorra: Zigorra
+Hasi: Hasi
+Amaitu: Amaitu
+form.user.canRent: form.user.canRent
+form.user.zigorra: form.user.zigorra

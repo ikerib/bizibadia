@@ -1,0 +1,29 @@
+<table class="table">
+    <thead>
+    <tr>
+        <th>{{ "Zigorra" | trans}}</th>
+        <th>{{ "Egunak" | trans}}</th>
+        <th>{{ "Hasi" | trans}}</th>
+        <th>{{ "Amaitu" | trans}}</th>
+        {# <th></th> #}
+    </tr>
+    </thead>
+    <tbody>
+    {% for erabiltzaile_zigorra in erabiltzaile_zigorras %}
+        <tr>
+            <td>{{ erabiltzaile_zigorra.zigorra }}</td>
+            <td>{{ erabiltzaile_zigorra.zigorra.egunak }}</td>
+            <td>{{ erabiltzaile_zigorra.dateStart ? erabiltzaile_zigorra.dateStart|date('Y-m-d') : '' }}</td>
+            <td>{{ erabiltzaile_zigorra.dateEnd ? erabiltzaile_zigorra.dateEnd|date('Y-m-d') : '' }}</td>
+            {# <td>#}
+            {# <a href="{{ path('app_erabiltzaile_zigorra_show', {'id': erabiltzaile_zigorra.id}) }}">show</a>#}
+            {# <a href="{{ path('app_erabiltzaile_zigorra_edit', {'id': erabiltzaile_zigorra.id}) }}">edit</a>#}
+            {# </td>#}
+        </tr>
+    {% else %}
+        <tr>
+            <td colspan="4">{{ "Ez dago daturik erakusteko" | trans}}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>

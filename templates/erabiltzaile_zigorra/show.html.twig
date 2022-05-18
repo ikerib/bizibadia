@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}ErabiltzaileZigorra{% endblock %}
+
+{% block body %}
+    <h1>ErabiltzaileZigorra</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ erabiltzaile_zigorra.id }}</td>
+            </tr>
+            <tr>
+                <th>DateStart</th>
+                <td>{{ erabiltzaile_zigorra.dateStart ? erabiltzaile_zigorra.dateStart|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateEnd</th>
+                <td>{{ erabiltzaile_zigorra.dateEnd ? erabiltzaile_zigorra.dateEnd|date('Y-m-d') : '' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ erabiltzaile_zigorra.createdAt ? erabiltzaile_zigorra.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ erabiltzaile_zigorra.updatedAt ? erabiltzaile_zigorra.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_erabiltzaile_zigorra_index') }}">back to list</a>
+
+    <a href="{{ path('app_erabiltzaile_zigorra_edit', {'id': erabiltzaile_zigorra.id}) }}">edit</a>
+
+    {{ include('erabiltzaile_zigorra/_delete_form.html.twig') }}
+{% endblock %}

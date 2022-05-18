@@ -1,0 +1,77 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ "Zigorren mantenua" | trans}}{% endblock %}
+
+{% block body %}
+
+<div class="">
+    <div class="page-title">
+        <div class="title_left">
+            <h3>{{ "Zigorren mantenua" | trans}}</h3>
+        </div>
+        <div class="title_right">
+            <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+
+            </div>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+    <div class="row" style="display: block;">
+        <div class="col-md-12 col-sm-12 ">
+            <div class="x_panel">
+                <div class="x_title">
+                    <a id="btnNew" href="{{ path('app_zigorra_new') }}" class="btn btn-success "><i class="fa fa-plus-square"></i> BERRIA</a>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br>
+                    <table class="table table-striped projects datatable">
+                        <thead>
+                            <tr>
+                                <th style="width: 40%;">{{ "Izena" | trans}}</th>
+                                <th>{{ "Egunak" | trans}}</th>
+                                <th>{{ "Zenbatekoa" | trans}}</th>
+                                <th class="text-center">{{ "Alokatzea galarazi" | trans}}</th>
+                                <th style="width: 20%;"></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for zigorra in zigorras %}
+                            <tr>
+                                <td>{{ zigorra.name }}</td>
+                                <td>{{ zigorra.egunak }}</td>
+                                <td>{{ zigorra.zenbatekoa }}</td>
+                                <td class="text-center">{% if  zigorra.canRent  %}
+                                        <span class="label label-success">Bai</span>
+                                    {% else %}
+                                        <span class="label label-danger">Ez</span>
+                                    {% endif %}</td>
+                                <td class="text-center">
+                                    <ul class="list-inline text-center">
+                                        <li>
+{#                                            <a class="btn btn-primary" href="{{ path('app_zigorra_edit', {'id': zigorra.id}) }}"><i class="fa fa-edit"></i> {{ "Editatu" | trans}}</a>#}
+                                            <a class="btn btn-primary btn-xs" href="{{ path('app_zigorra_edit', {'id': zigorra.id}) }}"
+                                               data-toggle="tooltip" data-placement="top" title="{{ 'Editatu' | trans }}">
+                                                <i class="fa fa-pencil"></i>
+                                            </a>
+                                        </li>
+                                        <li>{{ include('zigorra/_delete_form.html.twig')}}</li>
+                                    </ul>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="3">no records found</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}

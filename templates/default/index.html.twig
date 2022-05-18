@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="eu">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="row">
+    <h1>BiziBadia</h1>
+</div>
+
+<div class="row bg-info p-4">
+    <h3>{{ "Bizikleta Mailegu Zerbitzua" | trans}}</h3>
+</div>
+
+<div class="row">&nbsp;</div>
+
+
+<div class="row">
+    <div id="controls"></div>
+    <div id="gmap" style="height:500px;"></div>
+</div>
+
+<div class="row">&nbsp;</div>
+<hr>
+<div class="row">&nbsp;</div>
+
+<div class="row">
+    {% set columns = 4 %}
+    {% for g in guneak %}
+{#        {% if loop.first or loop.index0 is divisible by(columns) %}#}
+            <div class="col-4">
+{#        {% endif %}#}
+
+        <div class="card mb-4 rounded-3 shadow-sm border-primary">
+            <div class="card-header py-3 text-white bg-primary border-primary">
+                <h4 class="my-0 fw-normal">{{ g.name }}</h4>
+            </div>
+            <div class="card-body">
+                <h1 class="card-title pricing-card-title">{{ g.bizikletak|length }}<small class="text-muted fw-light">/{{ "Bizikleta" | trans}}</small></h1>
+                <ul class="list-unstyled mt-3 mb-4">
+{#                    <li>30 users included</li>#}
+{#                    <li>15 GB of storage</li>#}
+{#                    <li>Phone and email support</li>#}
+{#                    <li>Help center access</li>#}
+                    {{ g.ordutegia | raw }}
+                </ul>
+            </div>
+        </div>
+
+{#        {% if loop.last or loop.index is divisible by(columns) %}#}
+            </div>
+{#        {% endif %}#}
+    {% endfor %}
+
+</div>
+<script src="https://maps.google.com/maps/api/js?sensor=false&libraries=geometry&v=3.22&key=AIzaSyBXzdT5v5Gjw1XkgNqUU5jKJJ00oYC4dmo" xmlns="http://www.w3.org/1999/html"></script>
+<script src="https://code.jquery.com/jquery-1.9.0.min.js"></script>
+<script src="{{ asset('build/maplace/maplace-0.1.3.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.5/dist/umd/popper.min.js" integrity="sha384-Xe+8cL9oJa6tN/veChSP7q+mnSPaj5Bcu9mPX5F5xIGE0DVittaqT5lorf0EI7Vk" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-kjU+l4N0Yf4ZOJErLsIcvOU2qSb74wXpOhqTvwVx3OElZRweTnQ6d31fXEoRD1Jy" crossorigin="anonymous"></script>
+
+<script>
+    $(function() {
+        console.log( "ready!" );
+        var url = '/api/guneas.json';
+
+        console.log(url)
+
+        $.getJSON(url)
+            .done(function( data ) {
+
+                data = data.filter(item => {
+                    return item.latitude !== null && item.longitude !== null;
+                }).map( item => {
+                    item.lat = item.latitude;
+                    item.lon = item.longitude;
+                    item.title = item.name;
+                    return item;
+                })
+
+                new Maplace({
+                    locations: data,
+                    map_div: '#gmap',
+                    controls_title: 'Aukeratu:',
+                    view_all_text: '{{ "Guztiak" | trans }}',
+                    // controls_on_map: false,
+                    // type: 'polyline',
+                    controls_type: 'list'
+                }).Load();
+            });
+    });
+</script>
+</body>
+</html>

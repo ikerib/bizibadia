@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit ErabiltzaileZigorra{% endblock %}
+
+{% block body %}
+    <h1>Edit ErabiltzaileZigorra</h1>
+
+    {{ include('erabiltzaile_zigorra/_form.html.twig', {'button_label': 'Update'}) }}
+
+    <a href="{{ path('app_erabiltzaile_zigorra_index') }}">back to list</a>
+
+    {{ include('erabiltzaile_zigorra/_delete_form.html.twig') }}
+{% endblock %}

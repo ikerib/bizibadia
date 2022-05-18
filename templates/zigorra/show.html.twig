@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Zigorra{% endblock %}
+
+{% block body %}
+    <h1>Zigorra</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ zigorra.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ zigorra.name }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_zigorra_index') }}">back to list</a>
+
+    <a href="{{ path('app_zigorra_edit', {'id': zigorra.id}) }}">edit</a>
+
+    {{ include('zigorra/_delete_form.html.twig') }}
+{% endblock %}

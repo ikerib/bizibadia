@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Erabiltzaileen mantenua{% endblock %}
+
+{% block body %}
+
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>{{ user.name ~ ' ' ~ user.surname }} <small>editatzen</small></h3>
+            </div>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
+
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row" style="display: block;">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
+
+                        <ul class="list-inline">
+                            <li><a id="btnSaveButton" href="javascript: void(0)" class="btn btn-success "><i class="fa fa-save"></i> GORDE</a></li>
+                            <li>{{ include('user/_delete_form.html.twig') }}</li>
+                        </ul>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br>
+                        {{ include('user/_form.html.twig', {'button_label': 'Update'}) }}
+                        <hr>
+                        <div class="text-center">
+                            <a class="btn btn-link" href="{{ path('app_user_change_password',{'id': user.id})}}">{{ "form.user.change-password" | trans}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+

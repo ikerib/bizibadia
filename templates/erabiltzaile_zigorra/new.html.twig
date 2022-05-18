@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New ErabiltzaileZigorra{% endblock %}
+
+{% block body %}
+    <h1>Create new ErabiltzaileZigorra</h1>
+
+    {{ include('erabiltzaile_zigorra/_form.html.twig') }}
+
+    <a href="{{ path('app_erabiltzaile_zigorra_index') }}">back to list</a>
+{% endblock %}

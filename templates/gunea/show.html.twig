@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Gunea{% endblock %}
+
+{% block body %}
+    <h1>Gunea</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ gunea.id }}</td>
+            </tr>
+            <tr>
+                <th>Name</th>
+                <td>{{ gunea.name }}</td>
+            </tr>
+            <tr>
+                <th>Helbidea</th>
+                <td>{{ gunea.helbidea }}</td>
+            </tr>
+            <tr>
+                <th>Ordutegia</th>
+                <td>{{ gunea.ordutegia }}</td>
+            </tr>
+            <tr>
+                <th>Latitude</th>
+                <td>{{ gunea.latitude }}</td>
+            </tr>
+            <tr>
+                <th>Longitude</th>
+                <td>{{ gunea.longitude }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ gunea.createdAt ? gunea.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ gunea.updatedAt ? gunea.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_gunea_index') }}">back to list</a>
+
+    <a href="{{ path('app_gunea_edit', {'id': gunea.id}) }}">edit</a>
+
+    {{ include('gunea/_delete_form.html.twig') }}
+{% endblock %}

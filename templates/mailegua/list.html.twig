@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mailegua index{% endblock %}
+
+{% block body %}
+    <h1>Mailegua index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>DateStart</th>
+                <th>DateEnd</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for mailegua in maileguas %}
+            <tr>
+                <td>{{ mailegua.id }}</td>
+                <td>{{ mailegua.dateStart ? mailegua.dateStart|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ mailegua.dateEnd ? mailegua.dateEnd|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ mailegua.createdAt ? mailegua.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ mailegua.updatedAt ? mailegua.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_mailegua_show', {'id': mailegua.id}) }}">show</a>
+                    <a href="{{ path('app_mailegua_edit', {'id': mailegua.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_mailegua_new') }}">Create new</a>
+{% endblock %}

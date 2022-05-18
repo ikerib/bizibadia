@@ -1,0 +1,38 @@
+{
+    "devDependencies": {
+        "@fortawesome/fontawesome-free": "^6.1.1",
+        "@popperjs/core": "^2.11.5",
+        "bootstrap-progressbar": "0.9.0",
+        "core-js": "^3.22.3",
+        "datejs": "^1.0.0-rc3",
+        "file-loader": "^6.0.0",
+        "icheck": "1.0.2",
+        "moment": "^2.29.3",
+        "nprogress": "^0.2.0",
+        "sass": "^1.41.0",
+        "sass-loader": "^12.0.0",
+        "@symfony/webpack-encore": "^2.0.0",
+        "regenerator-runtime": "^0.13.2",
+        "webpack-notifier": "^1.6.0"
+    },
+    "license": "UNLICENSED",
+    "private": true,
+    "scripts": {
+        "dev-server": "encore dev-server",
+        "dev": "encore dev",
+        "watch": "encore dev --watch",
+        "build": "encore production --progress"
+    },
+    "dependencies": {
+        "add": "^2.0.6",
+        "bootstrap": "^3.3.7",
+        "ckeditor4": "^4.13.0",
+        "datatables.net": "^1.11.5",
+        "datatables.net-dt": "^1.11.5",
+        "font-awesome": "^4.7.0",
+        "jquery": "^3.6.0",
+        "select2": "^4.1.0-rc.0",
+        "select2-bootstrap-theme": "^0.1.0-beta.10",
+        "yarn": "^1.22.18"
+    }
+}

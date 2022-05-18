@@ -1,0 +1,7 @@
+{{ form_start(form, {'attr': {'id': 'frmCRUD'}}) }}
+    {{ form_widget(form) }}
+    <button class="btn">{{ button_label|default('Save') }}</button>
+    <div style="display: none;">
+        <button id="crudSubmitButton" class="btn">{{ button_label|default(' Savesss') }}</button>
+    </div>
+{{ form_end(form) }}

@@ -1,0 +1,25 @@
+{{ form_start(form) }}
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            {{ form_row(form.zigorra) }}
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+<hr>
+
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            {{ form_row(form.matxura) }}
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+
+    <div style="display: none;">
+        <button id="crudSubmitButton" class="btn">{{ button_label|default(' Savesss') }}</button>
+    </div>
+
+{{ form_end(form)}}

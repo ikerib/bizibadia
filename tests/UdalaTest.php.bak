@@ -1,0 +1,27 @@
+<?php
+
+namespace App\Tests;
+
+use Facebook\WebDriver\WebDriverDimension;
+use Symfony\Component\Panther\PantherTestCase;
+
+class UdalaTest extends PantherTestCase
+{
+    public function testSomething(): void
+    {
+        $client = static::createPantherClient();
+        $size = new WebDriverDimension(1920,1080);
+        $client->manage()->window()->setSize($size);
+
+        $crawler = $client->request('GET', 'http://bizibadia.test/eu/kudeatu/users/');
+        self::assertResponseRedirects('/login');
+
+
+//        self::assertSelectorTextContains('.title_left', 'Udalak ');
+//
+//        $client->executeScript("document.querySelector('#btnNew').click()");
+
+
+        $size = new WebDriverDimension([1920,12080]); // error to pause
+    }
+}

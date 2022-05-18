@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Mailegua{% endblock %}
+
+{% block body %}
+    <h1>Mailegua</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ mailegua.id }}</td>
+            </tr>
+            <tr>
+                <th>DateStart</th>
+                <td>{{ mailegua.dateStart ? mailegua.dateStart|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>DateEnd</th>
+                <td>{{ mailegua.dateEnd ? mailegua.dateEnd|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>CreatedAt</th>
+                <td>{{ mailegua.createdAt ? mailegua.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>UpdatedAt</th>
+                <td>{{ mailegua.updatedAt ? mailegua.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_mailegua_index') }}">back to list</a>
+
+    <a href="{{ path('app_mailegua_edit', {'id': mailegua.id}) }}">edit</a>
+
+    {{ include('mailegua/_delete_form.html.twig') }}
+{% endblock %}
