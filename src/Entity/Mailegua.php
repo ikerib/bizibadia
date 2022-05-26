@@ -51,6 +51,9 @@ class Mailegua
     #[ORM\ManyToOne(targetEntity: Zigorra::class, inversedBy: 'maileguak')]
     private $zigorra;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $oldid;
+
     /***************************************************************************************/
     /***************************************************************************************/
     /***************************************************************************************/
@@ -176,6 +179,18 @@ class Mailegua
     public function setZigorra(?Zigorra $zigorra): self
     {
         $this->zigorra = $zigorra;
+
+        return $this;
+    }
+
+    public function getOldid(): ?int
+    {
+        return $this->oldid;
+    }
+
+    public function setOldid(?int $oldid): self
+    {
+        $this->oldid = $oldid;
 
         return $this;
     }

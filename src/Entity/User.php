@@ -46,6 +46,12 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'boolean')]
     private $canRent = true;
 
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $bazkidea;
+
+    #[ORM\Column(type: 'string', length: 10, nullable: true)]
+    private $nan;
+
     /*****************************************************************************************************************/
     /*****************************************************************************************************************/
     /*****************************************************************************************************************/
@@ -59,6 +65,36 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\OneToMany(mappedBy: 'erabiltzailea', targetEntity: ErabiltzaileZigorra::class)]
     #[ORM\OrderBy(['dateEnd' => 'ASC'])]
     private $zigorrak;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $ordainketa;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $pasaitarra;
+
+    #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    private $mugikorra;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $sinatuta;
+
+    #[ORM\Column(type: 'text', nullable: true)]
+    private $oharrak;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $alokatua;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $udallangilea;
+
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $baimenberezia;
+
+    #[ORM\Column(type: 'datetime', nullable: true)]
+    private $iraungitze;
+
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $oldid;
 
     public function __construct()
     {
@@ -287,6 +323,150 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $zigorrak->setErabiltzailea(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isBazkidea(): ?bool
+    {
+        return $this->bazkidea;
+    }
+
+    public function setBazkidea(?bool $bazkidea): self
+    {
+        $this->bazkidea = $bazkidea;
+
+        return $this;
+    }
+
+    public function getNan(): ?string
+    {
+        return $this->nan;
+    }
+
+    public function setNan(?string $nan): self
+    {
+        $this->nan = $nan;
+
+        return $this;
+    }
+
+    public function isOrdainketa(): ?bool
+    {
+        return $this->ordainketa;
+    }
+
+    public function setOrdainketa(?bool $ordainketa): self
+    {
+        $this->ordainketa = $ordainketa;
+
+        return $this;
+    }
+
+    public function isPasaitarra(): ?bool
+    {
+        return $this->pasaitarra;
+    }
+
+    public function setPasaitarra(?bool $pasaitarra): self
+    {
+        $this->pasaitarra = $pasaitarra;
+
+        return $this;
+    }
+
+    public function getMugikorra(): ?string
+    {
+        return $this->mugikorra;
+    }
+
+    public function setMugikorra(?string $mugikorra): self
+    {
+        $this->mugikorra = $mugikorra;
+
+        return $this;
+    }
+
+    public function isSinatuta(): ?bool
+    {
+        return $this->sinatuta;
+    }
+
+    public function setSinatuta(?bool $sinatuta): self
+    {
+        $this->sinatuta = $sinatuta;
+
+        return $this;
+    }
+
+    public function getOharrak(): ?string
+    {
+        return $this->oharrak;
+    }
+
+    public function setOharrak(?string $oharrak): self
+    {
+        $this->oharrak = $oharrak;
+
+        return $this;
+    }
+
+    public function isAlokatua(): ?bool
+    {
+        return $this->alokatua;
+    }
+
+    public function setAlokatua(?bool $alokatua): self
+    {
+        $this->alokatua = $alokatua;
+
+        return $this;
+    }
+
+    public function isUdallangilea(): ?bool
+    {
+        return $this->udallangilea;
+    }
+
+    public function setUdallangilea(?bool $udallangilea): self
+    {
+        $this->udallangilea = $udallangilea;
+
+        return $this;
+    }
+
+    public function isBaimenberezia(): ?bool
+    {
+        return $this->baimenberezia;
+    }
+
+    public function setBaimenberezia(?bool $baimenberezia): self
+    {
+        $this->baimenberezia = $baimenberezia;
+
+        return $this;
+    }
+
+    public function getIraungitze(): ?\DateTimeInterface
+    {
+        return $this->iraungitze;
+    }
+
+    public function setIraungitze(?\DateTimeInterface $iraungitze): self
+    {
+        $this->iraungitze = $iraungitze;
+
+        return $this;
+    }
+
+    public function getOldid(): ?int
+    {
+        return $this->oldid;
+    }
+
+    public function setOldid(?int $oldid): self
+    {
+        $this->oldid = $oldid;
 
         return $this;
     }

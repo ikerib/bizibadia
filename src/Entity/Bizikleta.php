@@ -46,6 +46,9 @@ class Bizikleta
     #[ORM\OneToMany(mappedBy: 'bizikleta', targetEntity: Mailegua::class)]
     private $maileguak;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $oldid;
+
     public function __construct()
     {
         $this->maileguak = new ArrayCollection();
@@ -211,6 +214,18 @@ class Bizikleta
     public function setIsAlokatuta(bool $isAlokatuta): self
     {
         $this->isAlokatuta = $isAlokatuta;
+
+        return $this;
+    }
+
+    public function getOldid(): ?int
+    {
+        return $this->oldid;
+    }
+
+    public function setOldid(?int $oldid): self
+    {
+        $this->oldid = $oldid;
 
         return $this;
     }

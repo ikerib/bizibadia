@@ -37,6 +37,9 @@ class Eguraldia
     #[ORM\OneToMany(mappedBy: 'eguraldia', targetEntity: Mailegua::class)]
     private $maileguak;
 
+    #[ORM\Column(type: 'integer')]
+    private $oldid;
+
     public function __construct()
     {
         $this->maileguak = new ArrayCollection();
@@ -101,6 +104,18 @@ class Eguraldia
                 $maileguak->setEguraldia(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOldid(): ?int
+    {
+        return $this->oldid;
+    }
+
+    public function setOldid(int $oldid): self
+    {
+        $this->oldid = $oldid;
 
         return $this;
     }

@@ -46,6 +46,9 @@ class Gunea
     #[Groups(["gunea:list"])]
     private $longitude;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $oldid;
+
     /***************************************************************************************/
     /***************************************************************************************/
     /***************************************************************************************/
@@ -61,6 +64,8 @@ class Gunea
 
     #[ORM\OneToMany(mappedBy: 'startGunea', targetEntity: Mailegua::class)]
     private $maileguak;
+
+
 
     public function __construct()
     {
@@ -222,6 +227,18 @@ class Gunea
                 $maileguak->setStartGunea(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getOldid(): ?int
+    {
+        return $this->oldid;
+    }
+
+    public function setOldid(?int $oldid): self
+    {
+        $this->oldid = $oldid;
 
         return $this;
     }

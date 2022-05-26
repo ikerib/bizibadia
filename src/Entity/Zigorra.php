@@ -50,6 +50,9 @@ class Zigorra
     #[ORM\OneToMany(mappedBy: 'zigorra', targetEntity: ErabiltzaileZigorra::class)]
     private $zigorrak;
 
+    #[ORM\Column(type: 'integer', nullable: true)]
+    private $oldid;
+
     public function __construct()
     {
         $this->maileguak = new ArrayCollection();
@@ -210,6 +213,18 @@ class Zigorra
     public function setCanRent(?bool $canRent): self
     {
         $this->canRent = $canRent;
+
+        return $this;
+    }
+
+    public function getOldid(): ?int
+    {
+        return $this->oldid;
+    }
+
+    public function setOldid(?int $oldid): self
+    {
+        $this->oldid = $oldid;
 
         return $this;
     }
