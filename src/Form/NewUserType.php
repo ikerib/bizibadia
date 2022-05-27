@@ -16,6 +16,7 @@ use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Regex;
 
 class NewUserType extends AbstractType
 {
@@ -24,15 +25,9 @@ class NewUserType extends AbstractType
         $builder
             ->add('name', null, [
                 'label' => 'form.user.name',
-                'constraints' => [
-                    new NotBlank(),
-                    new Length([
-                        'min' => 3
-                    ])
-                ]
-            ])
-            ->add('surname', null, [
-                'label' => 'form.user.surname',
+                'attr' => [
+                    'autocomplete' => 'disabled'
+                ],
                 'constraints' => [
                     new NotBlank(),
                     new Length([
@@ -42,6 +37,9 @@ class NewUserType extends AbstractType
             ])
             ->add('email', null, [
                 'label' => 'form.user.email',
+                'attr' => [
+                    'autocomplete' => 'disabled'
+                ],
                 'constraints' => [
                     new NotBlank(),
                     new Email()
@@ -56,29 +54,37 @@ class NewUserType extends AbstractType
             ])
             ->add('username', null, [
                 'label' => 'form.user.username',
+                'attr' => [
+                    'autocomplete' => 'disabled'
+                ],
                 'constraints' => [
                     new NotBlank(),
                     new Length([
                         'min' => 3
-                    ])
-                ]
-            ])
-            ->add('password', RepeatedType::class, [
-                'type' => PasswordType::class,
-                'invalid_message' => 'form.user.password-not-same',
-                'options' => ['attr' => ['class' => 'password-field']],
-                'required' => true,
-                'first_options' => ['label' => 'form.user.password'],
-                'second_options' => ['label' => 'form.user.password-repeat'],
-                'attr' => ['autocomplete' => 'off'],
-            ])
+                    ]),
+                    new Regex(
+                        "/^[a-zA-Z0-9_]+$/",
+                        "Eremu honetan ezin da utsunerik egon"
+                    )
+            ]])
+//            ->add('password', RepeatedType::class, [
+//                'type' => PasswordType::class,
+//                'invalid_message' => 'form.user.password-not-same',
+//                'options' => ['attr' => ['class' => 'password-field']],
+//                'required' => true,
+//                'first_options' => ['label' => 'form.user.password'],
+//                'second_options' => ['label' => 'form.user.password-repeat'],
+//                'attr' => ['autocomplete' => 'off'],
+//            ])
             ->add('roles', ChoiceType::class, [
                 'required' => true,
                 'multiple' => false,
                 'expanded' => false,
+                'placeholder' => 'Aukeratu bat',
                 'choices'  => [
                     'Administraria' => 'ROLE_ADMIN',
                     'Kudeatzailea' => 'ROLE_KUDEATU',
+                    'Erabiltzailea' => 'ROLE_USER'
                 ],
             ])
 

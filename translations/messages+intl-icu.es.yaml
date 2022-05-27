@@ -54,7 +54,7 @@ Zigor: Sanción
 editatzen: editando
 'Gune berria': 'Nueva zona'
 'Eguraldien mantenua': 'Mantenimiento de Meteorología'
-'Eguraldi berria': 'Nuevo'
+'Eguraldi berria': Nuevo
 Maileguak: Prestamos
 'Maileguen Mantenua': 'Mantenimiento de Prestamos'
 'Maileguaren itzulketa': 'Devolución de Prestamo'
@@ -76,6 +76,17 @@ Zigorra: Sanción
 Hasi: Inicio
 Amaitu: Fin
 'Eguraldien Mantenua': 'Mantenimiento de Meteorología'
-form.user.canRent: ¿Puede alquilar?
+form.user.canRent: '¿Puede alquilar?'
 form.user.zigorra: Sanciones
-'BERRIA': 'NUEVO'
+BERRIA: NUEVO
+'Bizikleta Mailegu Zerbitzua': 'Servicio de alquiler de bicicletas'
+Guztiak: Todos
+form.user.nan: DNI
+'Super Administratzailea': 'Super Administrador'
+Administratzailea: Administrador
+Kudeatzailea: Gestor
+Mugikorra: Móvil
+'Herritarra?': '¿Ciudadano?'
+'Bazkidea?': '¿Socio?'
+Ordainketa: Pago
+'Sinatuta?': '¿Firmado?'

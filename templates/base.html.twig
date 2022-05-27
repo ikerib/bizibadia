@@ -17,7 +17,7 @@
     <body class="nav-md">
     <div class="container body">
         <div class="main_container">
-            <input type="hidden" id="txtLocale" value="{{ app.request.locale}}">
+            <input type="hidden" id="txtLocale" value="{{ app.request.locale | lower}}">
             {% include '_sidebar.html.twig' %}
             {% include '_topbar.html.twig' %}
 

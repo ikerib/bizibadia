@@ -35,9 +35,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $name;
 
     #[ORM\Column(type: 'string', length: 255)]
-    private $surname;
-
-    #[ORM\Column(type: 'string', length: 255)]
     private $email;
 
     #[ORM\Column(type: 'string', length: 2)]
@@ -51,20 +48,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(type: 'string', length: 10, nullable: true)]
     private $nan;
-
-    /*****************************************************************************************************************/
-    /*****************************************************************************************************************/
-    /*****************************************************************************************************************/
-
-    #[ORM\ManyToOne(targetEntity: Udala::class, inversedBy: 'users')]
-    private $udala;
-
-    #[ORM\OneToMany(mappedBy: 'erabiltzailea', targetEntity: Mailegua::class)]
-    private $maileguak;
-
-    #[ORM\OneToMany(mappedBy: 'erabiltzailea', targetEntity: ErabiltzaileZigorra::class)]
-    #[ORM\OrderBy(['dateEnd' => 'ASC'])]
-    private $zigorrak;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
     private $ordainketa;
@@ -96,6 +79,20 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(type: 'integer', nullable: true)]
     private $oldid;
 
+    /*****************************************************************************************************************/
+    /*****************************************************************************************************************/
+    /*****************************************************************************************************************/
+
+    #[ORM\ManyToOne(targetEntity: Udala::class, inversedBy: 'users')]
+    private $udala;
+
+    #[ORM\OneToMany(mappedBy: 'erabiltzailea', targetEntity: Mailegua::class)]
+    private $maileguak;
+
+    #[ORM\OneToMany(mappedBy: 'erabiltzailea', targetEntity: ErabiltzaileZigorra::class)]
+    #[ORM\OrderBy(['dateEnd' => 'ASC'])]
+    private $zigorrak;
+
     public function __construct()
     {
         $this->maileguak = new ArrayCollection();
@@ -104,7 +101,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     public function __toString()
     {
-        return $this->name . ' ' . $this->surname;
+        return $this->name;
     }
 
     /*****************************************************************************************************************/
@@ -203,18 +200,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setName(string $name): self
     {
         $this->name = $name;
-
-        return $this;
-    }
-
-    public function getSurname(): ?string
-    {
-        return $this->surname;
-    }
-
-    public function setSurname(string $surname): self
-    {
-        $this->surname = $surname;
 
         return $this;
     }

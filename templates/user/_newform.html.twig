@@ -1,0 +1,22 @@
+{{ form_start(form) }}
+{#    {{ form_widget(form) }}#}
+    {{ form_row(form.name)}}
+    {{ form_row(form.email)}}
+    {{ form_row(form.language)}}
+    {{ form_row(form.username)}}
+    {{ form_row(form.roles)}}
+
+
+    {% if is_granted('ROLE_SUPER_ADMIN') %}
+        {{ form_row(form.udala)}}
+    {% else %}
+        <div style="display: none;">
+            {{ form_row(form.udala)}}
+        </div>
+    {% endif %}
+
+    <div style="display: none">
+        <button id="crudSubmitButton" type="submit" class="btn">Register</button>
+    </div>
+
+{{ form_end(form) }}

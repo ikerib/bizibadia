@@ -28,12 +28,17 @@
                     <table class="table table-striped projects datatable">
                         <thead>
                             <tr>
+                                <th>{{ "form.user.nan" | trans}}</th>
                                 <th>{{ "form.user.name" | trans}}</th>
-                                <th>{{ "form.user.surname" | trans}}</th>
+                                <th>{{ "Mugikorra" | trans}}</th>
+                                <th>{{ "Herritarra?" | trans}}</th>
+                                <th>{{ "Bazkidea?" | trans}}</th>
                                 <th>{{ "form.user.canRent" | trans}}</th>
+                                <th>{{ "Ordainketa" | trans}}</th>
+                                <th>{{ "Sinatuta?" | trans}}</th>
                                 <th>{{ "form.user.zigorra" | trans}}</th>
-                                <th>{{ "form.user.role" | trans}}</th>
                                 {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                    <th>{{ "form.user.role" | trans}}</th>
                                     <th>{{ "Udala" | trans}}</th>
                                 {% endif %}
                                 <th style="width: 20%"></th>
@@ -42,10 +47,39 @@
                         <tbody>
                         {% for user in users %}
                             <tr>
+                                <td>{{ user.nan }}</td>
                                 <td>{{ user.name }}</td>
-                                <td>{{ user.surname }}</td>
+                                <td>{{ user.mugikorra }}</td>
+                                <td class="text-center">
+                                    {% if user.pasaitarra %}
+                                        <span class="label label-success">Bai</span>
+                                    {% else %}
+                                        <span class="label label-danger">Ez</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    {% if user.bazkidea %}
+                                        <span class="label label-success">Bai</span>
+                                    {% else %}
+                                        <span class="label label-danger">Ez</span>
+                                    {% endif %}
+                                </td>
                                 <td class="text-center">
                                     {% if user.canRent %}
+                                        <span class="label label-success">Bai</span>
+                                    {% else %}
+                                        <span class="label label-danger">Ez</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    {% if user.ordainketa %}
+                                        <span class="label label-success">Bai</span>
+                                    {% else %}
+                                        <span class="label label-danger">Ez</span>
+                                    {% endif %}
+                                </td>
+                                <td class="text-center">
+                                    {% if user.sinatuta %}
                                         <span class="label label-success">Bai</span>
                                     {% else %}
                                         <span class="label label-danger">Ez</span>
@@ -65,16 +99,16 @@
                                     {% endif %}
                                     </a>
                                 </td>
-                                <td>
-                                    {% if 'ROLE_SUPER_ADMIN' in user.roles %}
-                                        <span class="label label-default">{{ "Super Administratzailea" | trans}}</span>
-                                    {% elseif 'ROLE_ADMIN' in user.roles %}
-                                        <span class="label label-default">{{ "Administratzailea" | trans}}</span>
-                                    {% elseif 'ROLE_KUDEATU' in user.roles %}
-                                        <span class="label label-default">{{ "Kudeatzailea" | trans}}</span>
-                                    {% endif %}
-                                </td>
                                 {% if is_granted('ROLE_SUPER_ADMIN') %}
+                                    <td>
+                                        {% if 'ROLE_SUPER_ADMIN' in user.roles %}
+                                            <span class="label label-default">{{ "Super Administratzailea" | trans}}</span>
+                                        {% elseif 'ROLE_ADMIN' in user.roles %}
+                                            <span class="label label-default">{{ "Administratzailea" | trans}}</span>
+                                        {% elseif 'ROLE_KUDEATU' in user.roles %}
+                                            <span class="label label-default">{{ "Kudeatzailea" | trans}}</span>
+                                        {% endif %}
+                                    </td>
                                     <td>{{user.udala}}</td>
                                 {% endif %}
                                 <td class="text-center">

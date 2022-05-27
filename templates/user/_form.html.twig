@@ -1,20 +1,28 @@
 {{ form_start(form) }}
-{#    {{ form_widget(form) }}#}
-    {{ form_row(form.name)}}
-    {{ form_row(form.surname)}}
-    {{ form_row(form.email)}}
-    {{ form_row(form.language)}}
-    {{ form_row(form.username)}}
+
+{{ form_row(form.name)}}
+{{ form_row(form.nan)}}
+{{ form_row(form.mugikorra)}}
+{{ form_row(form.email)}}
+{{ form_row(form.language)}}
+{{ form_row(form.username)}}
+{{ form_row(form.iraungitze)}}
+
+
+{{ form_row(form.canRent)}}
+{{ form_row(form.bazkidea)}}
+{{ form_row(form.ordainketa)}}
+{{ form_row(form.pasaitarra)}}
+{{ form_row(form.sinatuta)}}
+{{ form_row(form.udallangilea)}}
+{{ form_row(form.baimenberezia)}}
+{{ form_row(form.oharrak)}}
+
+{% if is_granted('ROLE_SUPER_ADMIN') %}
     {{ form_row(form.roles)}}
+    {{ form_row(form.udala)}}
+{% endif %}
 
-
-    {% if is_granted('ROLE_SUPER_ADMIN') %}
-        {{ form_row(form.udala)}}
-    {% else %}
-        <div style="display: none;">
-            {{ form_row(form.udala)}}
-        </div>
-    {% endif %}
 
     <div style="display: none">
         <button id="crudSubmitButton" type="submit" class="btn">Register</button>

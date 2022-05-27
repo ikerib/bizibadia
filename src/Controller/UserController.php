@@ -41,14 +41,15 @@ class UserController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $passwd = $form->get('password')->getData();
+            $passwd = $form->get('username')->getData();
             $hashedPassword = $passwordHasher->hashPassword(
                 $user,
                 $passwd
             );
             $user->setPassword($hashedPassword);
             $userRepository->add($user);
-            return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
+
+            return $this->redirectToRoute('app_user_edit', ['id' => $user->getId()]);
         }
 
         return $this->renderForm('user/new.html.twig', [
@@ -110,5 +111,5 @@ class UserController extends AbstractController
 
         return $this->redirectToRoute('app_user_index', [], Response::HTTP_SEE_OTHER);
     }
-    
+
 }
