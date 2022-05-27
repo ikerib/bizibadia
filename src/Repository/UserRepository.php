@@ -75,4 +75,11 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         return $qb->getQuery()->getResult();
     }
 
+    public function findUserWithNoFilter($nan) {
+
+        $qb = $this->createQueryBuilder('u')
+            ->andWhere('u.nan LIKE :nan')->setParameter('nan', $nan)
+        ;
+    }
+
 }

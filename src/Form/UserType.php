@@ -90,7 +90,7 @@ class UserType extends AbstractType
                 'widget' => 'single_text',
                 'html5' => false,
                 'attr' => [
-                    'class' => 'form-control input-inline datetimepicker w600',
+                    'class' => 'form-control input-inline datetimepicker-date-only w600',
                     'data-provide' => 'datetimepicker',
                 ],
             ])

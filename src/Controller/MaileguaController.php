@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\ErabiltzaileZigorra;
 use App\Entity\Mailegua;
+use App\Entity\User;
 use App\Entity\Zigorra;
 use App\Form\MaileguaFinderType;
 use App\Form\MaileguaFindType;
@@ -16,6 +17,8 @@ use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -29,6 +32,80 @@ class MaileguaController extends AbstractController
     public function list(): Response
     {
         return $this->render('mailegua/index.html.twig');
+    }
+
+    #[Route('/list', name: 'app_mailegua_list', methods: ['GET'])]
+    public function index(EntityManagerInterface $entityManager): Response
+    {
+        $maileguas = $entityManager
+            ->getRepository(Mailegua::class)
+            ->findAll();
+
+        return $this->render('mailegua/list.html.twig', [
+            'maileguas' => $maileguas,
+        ]);
+    }
+
+    #[Route('/erabiltzailea', name: 'app_mailegua_erabiltzailea_select', methods: ['GET', 'POST'])]
+    public function erabiltzaileaselect(Request $request, EntityManagerInterface $entityManager): Response
+    {
+        $users = $entityManager->getRepository(User::class)->findAll();
+        $defaultData = ['message' => 'Erabiltzailea'];
+        $form = $this->createFormBuilder($defaultData)
+            ->add('nan', TextType::class)
+            ->add('bilatu', SubmitType::class)
+            ->getForm();
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // data is an array with "name", "email", and "message" keys
+            $data = $form->getData('nan');
+            $user = $entityManager->getRepository(User::class)->findUserWithNoFilter($data['nan']);
+
+            if ($user) {
+                return $this->redirectToRoute('app_mailegua_hasi', ['userid' => $user->getId()]);
+            } else {
+                // Call API to Avoid Doctrine filter
+                $url = "/api/users?nan=" . $data['nan'];
+                $response = $this->client->request('GET', $url);
+                $parsedResponse = $response->toArray();
+                return $parsedResponse['value'];
+
+            }
+        }
+
+        return $this->renderForm('mailegua/00-user_select.html.twig', [
+            'users' => $users,
+            'form' => $form
+        ]);
+    }
+
+    #[Route('/hasi/{userid}', name: 'app_mailegua_hasi', methods: ['GET', 'POST'])]
+    public function hasi(Request $request, EntityManagerInterface $entityManager, $userid): Response
+    {
+        $mailegua = new Mailegua();
+        $mailegua->setUdala($this->getUser()->getUdala());
+
+        $user = $entityManager->getRepository(User::class)->find($userid);
+        $mailegua->setErabiltzailea($user);
+        $form = $this->createForm(MaileguaHasiType::class, $mailegua);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $mailegua->getBizikleta()->setIsAlokatuta(true);
+            $mailegua->getBizikleta()->setGunea(null);
+            $mailegua->getErabiltzailea()->setCanRent(false);
+            $entityManager->persist($mailegua);
+            $entityManager->flush();
+
+            return $this->redirectToRoute('app_mailegua_index', [], Response::HTTP_SEE_OTHER);
+        }
+
+        return $this->renderForm('mailegua/hasi.html.twig', [
+            'mailegua' => $mailegua,
+            'form' => $form,
+        ]);
     }
 
     #[Route('/itzulketa', name: 'app_mailegua_itzulketa', methods: ['GET'])]
@@ -128,42 +205,6 @@ class MaileguaController extends AbstractController
 
         return $this->render('mailegua/zigorra.html.twig', [
             'form' => $form->createView()
-        ]);
-    }
-
-    #[Route('/list', name: 'app_mailegua_list', methods: ['GET'])]
-    public function index(EntityManagerInterface $entityManager): Response
-    {
-        $maileguas = $entityManager
-            ->getRepository(Mailegua::class)
-            ->findAll();
-
-        return $this->render('mailegua/list.html.twig', [
-            'maileguas' => $maileguas,
-        ]);
-    }
-
-    #[Route('/hasi', name: 'app_mailegua_hasi', methods: ['GET', 'POST'])]
-    public function hasi(Request $request, EntityManagerInterface $entityManager): Response
-    {
-        $mailegua = new Mailegua();
-        $mailegua->setUdala($this->getUser()->getUdala());
-        $form = $this->createForm(MaileguaHasiType::class, $mailegua);
-        $form->handleRequest($request);
-
-        if ($form->isSubmitted() && $form->isValid()) {
-            $mailegua->getBizikleta()->setIsAlokatuta(true);
-            $mailegua->getBizikleta()->setGunea(null);
-            $mailegua->getErabiltzailea()->setCanRent(false);
-            $entityManager->persist($mailegua);
-            $entityManager->flush();
-
-            return $this->redirectToRoute('app_mailegua_index', [], Response::HTTP_SEE_OTHER);
-        }
-
-        return $this->renderForm('mailegua/hasi.html.twig', [
-            'mailegua' => $mailegua,
-            'form' => $form,
         ]);
     }
 

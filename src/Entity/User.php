@@ -2,6 +2,9 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiFilter;
+use ApiPlatform\Core\Annotation\ApiResource;
+use ApiPlatform\Core\Bridge\Doctrine\Orm\Filter\SearchFilter;
 use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
@@ -10,19 +13,34 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
+#[ApiResource(
+    collectionOperations: ['get'],
+    itemOperations: ['get'],
+//    attributes: [
+//        'filters' => ['nan']
+//    ],
+    denormalizationContext: ['groups' => ['user:list','user:item']],
+    normalizationContext: ['groups' => ['user:list','user:item']],
+    order: ['name' => 'ASC'],
+    paginationEnabled: false
+)]
+//#[ApiFilter(SearchFilter::class, properties: ['id' => 'exact', 'nan' => 'exact'])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     use TimestampableEntity;
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups(["user:list", "user:item"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 180, unique: true)]
+    #[Groups(["user:list", "user:item"])]
     private $username;
 
     #[ORM\Column(type: 'json')]
@@ -32,6 +50,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $password;
 
     #[ORM\Column(type: 'string', length: 255)]
+    #[Groups(["user:list", "user:item"])]
     private $name;
 
     #[ORM\Column(type: 'string', length: 255)]
@@ -47,6 +66,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private $bazkidea;
 
     #[ORM\Column(type: 'string', length: 10, nullable: true)]
+    #[ApiFilter(SearchFilter::class, strategy: 'exact')]
     private $nan;
 
     #[ORM\Column(type: 'boolean', nullable: true)]
