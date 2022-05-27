@@ -14,11 +14,17 @@
                 <h3>{{ "Menua" | trans}}</h3>
                 <ul class="nav side-menu">
                     {% if is_granted('ROLE_SUPER_ADMIN') %}
-                        <li><a href="{{ path('app_udala_index') }}"><i class="fa fa-building"></i> {{ "Ayuntamientos" | trans}}</a></li>
+                        <li class="{% if 'app_udala' in app.request.get('_route') %} {{ 'current-page' }} {% endif %}">
+                            <a href="{{ path('app_udala_index') }}"><i class="fa fa-building"></i> {{ "Ayuntamientos" | trans}}</a>
+                        </li>
                     {% endif %}
                     {% if is_granted('ROLE_KUDEATU') %}
-                        <li><a href="{{ path('app_user_index') }}"><i class="fa fa-user"></i> {{ "Erabiltzaileak" | trans}}</a></li>
-                        <li><a href="{{ path('app_mailegua_index') }}"><i class="fa-solid fa-person-hiking"></i> {{ "Maileguak" | trans}}</a></li>
+                        <li class="{% if 'app_user' in app.request.get('_route') %} {{ 'current-page' }} {% endif %}">
+                            <a href="{{ path('app_user_index') }}"><i class="fa fa-user"></i> {{ "Erabiltzaileak" | trans}}</a>
+                        </li>
+                        <li class="{% if 'app_mailegua' in app.request.get('_route') %} {{ 'current-page' }} {% endif %}">
+                            <a href="{{ path('app_mailegua_index') }}"><i class="fa-solid fa-person-hiking"></i> {{ "Maileguak" | trans}}</a>
+                        </li>
                     {% endif %}
 
                 </ul>
@@ -28,11 +34,21 @@
                 <div class="menu_section">
                     <h3>{{ "Taula laguntzaileak" | trans}}</h3>
                     <ul class="nav side-menu">
-                        <li><a href="{{ path('app_gunea_index') }}"><i class="fa-solid fa-location-pin-lock"></i> {{ "Guneak" | trans}}</a></li>
-                        <li><a href="{{ path('app_bizikleta_index') }}"><i class="fa-solid fa-bicycle"></i> {{ "Bizikletak" | trans}}</a></li>
-                        <li><a href="{{ path('app_ibilbidea_index') }}"><i class="fa-solid fa-road"></i> {{ "Ibilbideak" | trans}}</a></li>
-                        <li><a href="{{ path('app_eguraldia_index') }}"><i class="fa-solid fa-cloud-sun"></i> {{ "Eguraldiak" | trans}}</a></li>
-                        <li><a href="{{ path('app_zigorra_index') }}"><i class="fa-solid fa-book-skull"></i> {{ "Zigorrak" | trans}}</a></li>
+                        <li class="{% if 'app_gunea' in app.request.get('_route') %} {{ 'current-page' }} {% endif %}">
+                            <a href="{{ path('app_gunea_index') }}"><i class="fa-solid fa-location-pin-lock"></i> {{ "Guneak" | trans}}</a>
+                        </li>
+                        <li class="{% if 'app_bizikleta' in app.request.get('_route') %} {{ 'current-page' }} {% endif %}">
+                            <a href="{{ path('app_bizikleta_index') }}"><i class="fa-solid fa-bicycle"></i> {{ "Bizikletak" | trans}}</a>
+                        </li>
+                        <li class="{% if 'app_ibilbidea' in app.request.get('_route') %} {{ 'current-page' }} {% endif %}">
+                            <a href="{{ path('app_ibilbidea_index') }}"><i class="fa-solid fa-road"></i> {{ "Ibilbideak" | trans}}</a>
+                        </li>
+                        <li class="{% if 'app_eguraldia' in app.request.get('_route') %} {{ 'current-page' }} {% endif %}">
+                            <a href="{{ path('app_eguraldia_index') }}"><i class="fa-solid fa-cloud-sun"></i> {{ "Eguraldiak" | trans}}</a>
+                        </li>
+                        <li class="{% if 'app_zigorra' in app.request.get('_route') %} {{ 'current-page' }} {% endif %}">
+                            <a href="{{ path('app_zigorra_index') }}"><i class="fa-solid fa-book-skull"></i> {{ "Zigorrak" | trans}}</a>
+                        </li>
                     </ul>
                 </div>
             {%endif%}
