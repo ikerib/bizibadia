@@ -5,10 +5,13 @@
         <div class="col-md-8">
             <div class="form-group">
                 <label class="control-label required" for="mailegua_hasi_erabiltzailea">Erabiltzailea</label>
-                {% if  %}
 
-                {% endif %}
-                <input type="text" id="mailegua_hasi_erabiltzailea" name="mailegua_hasi[dateStart]" class="form-control disabled" value="{{ mailegua.erabiltzailea }}" disabled>
+                <input type="text"
+                       id="mailegua_hasi_erabiltzailea"
+                       name="mailegua_hasi[dateStart]"
+                       class="form-control disabled"
+                       value="{% if mailegua.erabiltzailea.udala == app.user.udala %}{{ mailegua.erabiltzailea }}{% else %}{{ mailegua.erabiltzailea.nan }}{% endif %}" disabled
+                >
             </div>
             {{ form_row(form.bizikleta) }}
         </div>
@@ -36,7 +39,6 @@
     </div>
 
     <div style="display: none;">
-        {{ form_row(form.erabiltzailea) }}
         <button id="crudSubmitButton" class="btn">{{ button_label|default(' Savesss') }}</button>
     </div>
 

@@ -20,21 +20,21 @@ class MaileguaHasiType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('erabiltzailea', EntityType::class, [
-                'class' => User::class,
-                'query_builder' => function (EntityRepository $er) {
-                    return $er->createQueryBuilder('e')
-                        ->andWhere('e.canRent <> False or e.canRent is NULL')
-                        ->orderBy('e.surname', 'ASC')
-                        ->orderBy('e.name', 'ASC')
-                        ;
-                },
-                'label' => 'Erabiltzailea',
-                'placeholder' => 'Aukeratu erabiltzailea',
-                'attr' => [
-                    'class' => 'w600 select2'
-                ]
-            ])
+//            ->add('erabiltzailea', EntityType::class, [
+//                'class' => User::class,
+//                'query_builder' => function (EntityRepository $er) {
+//                    return $er->createQueryBuilder('e')
+//                        ->andWhere('e.canRent <> False or e.canRent is NULL')
+//                        ->orderBy('e.surname', 'ASC')
+//                        ->orderBy('e.name', 'ASC')
+//                        ;
+//                },
+//                'label' => 'Erabiltzailea',
+//                'placeholder' => 'Aukeratu erabiltzailea',
+//                'attr' => [
+//                    'class' => 'w600 select2'
+//                ]
+//            ])
             ->add('startGunea', EntityType::class, [
                 'class' => Gunea::class,
                 'label' => 'Hasierako gunea',

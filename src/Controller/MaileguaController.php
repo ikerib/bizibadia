@@ -22,12 +22,19 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use function PHPUnit\Framework\throwException;
+use Symfony\Contracts\HttpClient\HttpClientInterface;
 
 #[Route('/{_locale}/kudeatu/mailegua')]
 #[IsGranted("ROLE_KUDEATU")]
 class MaileguaController extends AbstractController
 {
+    private $client;
+
+    public function __construct(HttpClientInterface $client)
+    {
+        $this->client = $client;
+    }
+
     #[Route('/', name: 'app_mailegua_index', methods: ['GET'])]
     public function list(): Response
     {
@@ -64,13 +71,49 @@ class MaileguaController extends AbstractController
             $user = $entityManager->getRepository(User::class)->findUserWithNoFilter($data['nan']);
 
             if ($user) {
-                return $this->redirectToRoute('app_mailegua_hasi', ['userid' => $user->getId()]);
+                $mailegua = new Mailegua();
+                $mailegua->setUdala($this->getUser()->getUdala());
+                $mailegua->setErabiltzailea($user);
+                $entityManager->persist($mailegua);
+                $entityManager->flush();
+
+                return $this->redirectToRoute('app_mailegua_hasi', ['id' => $mailegua->getId()]);
             } else {
-                // Call API to Avoid Doctrine filter
-                $url = "/api/users?nan=" . $data['nan'];
-                $response = $this->client->request('GET', $url);
-                $parsedResponse = $response->toArray();
-                return $parsedResponse['value'];
+
+
+
+//                $apiEntryPoint = $this->getParameter('API_ENTRY_POINT');
+//                $url = $apiEntryPoint ."/users?nan=" . $data['nan'];
+//
+//                $this->client = $this->client->withOptions([
+//                    'base_uri' => $apiEntryPoint,
+//                    'headers' => ['Content-Type' => 'application/json']
+//                ]);
+//                $response = $this->client->request('GET', $url, [
+//                    'headers' => ['Content-Type' => 'application/json'],
+//                    'json' => [],
+//                ]);
+//
+//                $parsedResponse = $response->toArray();
+//                if ( count($parsedResponse['hydra:member']) > 0 ) {
+//                    $userid = $parsedResponse['hydra:member'][0]['id'];
+//                    $userIRI = "/api/users/$userid";
+//
+//
+//                    $url = $apiEntryPoint ."/maileguas";
+//                    $response = $this->client->request('POST', $url, [
+//                        'headers' => ['Content-Type' => 'application/json'],
+//                        'json' => [
+//                            "erabiltzailea" => $userIRI
+//                        ],
+//                    ]);
+//
+//                    $response = $response->toArray();
+//                    $maileguaID = str_replace("/api/maileguas/","",$response['@id']);
+//
+//                    return $this->redirectToRoute('app_mailegua_hasi', ['id' => $maileguaID]);
+//
+//                }
 
             }
         }
@@ -81,14 +124,11 @@ class MaileguaController extends AbstractController
         ]);
     }
 
-    #[Route('/hasi/{userid}', name: 'app_mailegua_hasi', methods: ['GET', 'POST'])]
-    public function hasi(Request $request, EntityManagerInterface $entityManager, $userid): Response
+    #[Route('/{id}/hasi', name: 'app_mailegua_hasi', methods: ['GET', 'POST'])]
+    public function hasi(Request $request, $id, EntityManagerInterface $entityManager): Response
     {
-        $mailegua = new Mailegua();
-        $mailegua->setUdala($this->getUser()->getUdala());
+        $mailegua = $entityManager->getRepository(Mailegua::class)->find($id);
 
-        $user = $entityManager->getRepository(User::class)->find($userid);
-        $mailegua->setErabiltzailea($user);
         $form = $this->createForm(MaileguaHasiType::class, $mailegua);
         $form->handleRequest($request);
 

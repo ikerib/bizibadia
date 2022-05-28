@@ -80,6 +80,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $qb = $this->createQueryBuilder('u')
             ->andWhere('u.nan LIKE :nan')->setParameter('nan', $nan)
         ;
+        return $qb->getQuery()->getOneOrNullResult();
     }
 
 }
