@@ -1,13 +1,43 @@
+
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Mailegua{% endblock %}
+{% block title %}Maileguen mantenua{% endblock %}
 
 {% block body %}
-    <h1>Edit Mailegua</h1>
 
-    {{ include('mailegua/_form.html.twig', {'button_label': 'Update'}) }}
+    <div class="">
+        <div class="page-title">
+            <div class="title_left">
+                <h3>{{ "Mailegua" }} <small>editatzen</small></h3>
+            </div>
+            <div class="title_right">
+                <div class="col-md-5 col-sm-5   form-group pull-right top_search">
 
-    <a href="{{ path('app_mailegua_index') }}">back to list</a>
+                </div>
+            </div>
+        </div>
+        <div class="clearfix"></div>
+        <div class="row" style="display: block;">
+            <div class="col-md-12 col-sm-12 ">
+                <div class="x_panel">
+                    <div class="x_title">
 
-    {{ include('mailegua/_delete_form.html.twig') }}
+                        <ul class="list-inline">
+                            <li><a id="btnSaveButton" href="javascript: void(0)" class="btn btn-success "><i class="fa fa-save"></i> GORDE</a></li>
+                            <li>{{ include('mailegua/_delete_form.html.twig') }}</li>
+                        </ul>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content">
+                        <br>
+                        {{ include('mailegua/_form.html.twig', {'button_label': 'Update'}) }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
 {% endblock %}
+
+

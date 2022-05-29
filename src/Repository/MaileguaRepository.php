@@ -80,15 +80,15 @@ class MaileguaRepository extends ServiceEntityRepository
         return $qb->getQuery()->setMaxResults(10)->getResult();
     }
 
-    public function getByFinder(Mailegua $filter)
+    public function getByFinder(Mailegua $filter, $userNan)
     {
         $qb = $this->createQueryBuilder('m')
             ->orderBy('m.id', 'DESC')
         ;
 
-        if ( $filter->getErabiltzailea() ) {
+        if ( $userNan) {
             $qb->innerJoin('m.erabiltzailea', 'e')
-                ->andWhere('e.id = :userId')->setParameter('userId', $filter->getErabiltzailea()->getId());
+                ->andWhere('e.nan = :nan')->setParameter('nan', $userNan);
         }
 
         if ( $filter->getDateStart() ) {

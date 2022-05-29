@@ -6,12 +6,14 @@ use App\Entity\ErabiltzaileZigorra;
 use App\Entity\Mailegua;
 use App\Entity\User;
 use App\Entity\Zigorra;
+use App\Form\Mailegua01HasiType;
+use App\Form\Mailegua02FinderType;
 use App\Form\MaileguaFinderType;
 use App\Form\MaileguaFindType;
-use App\Form\MaileguaFinType;
+use App\Form\Mailegua03FinType;
 use App\Form\MaileguaHasiType;
 use App\Form\MaileguaType;
-use App\Form\MaileguaZigorraType;
+use App\Form\Mailegua04ZigorraType;
 use App\Repository\MaileguaRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
@@ -53,7 +55,7 @@ class MaileguaController extends AbstractController
         ]);
     }
 
-    #[Route('/erabiltzailea', name: 'app_mailegua_erabiltzailea_select', methods: ['GET', 'POST'])]
+    #[Route('/erabiltzailea', name: 'app_mailegua_00-erabiltzailea_select', methods: ['GET', 'POST'])]
     public function erabiltzaileaselect(Request $request, EntityManagerInterface $entityManager): Response
     {
         $users = $entityManager->getRepository(User::class)->findAll();
@@ -70,6 +72,15 @@ class MaileguaController extends AbstractController
             $data = $form->getData('nan');
             $user = $entityManager->getRepository(User::class)->findUserWithNoFilter($data['nan']);
 
+            // begiratu ia zigorrik duen
+            $zigorrak = $entityManager->getRepository(ErabiltzaileZigorra::class)->zigorrak($user);
+
+            if ( count($zigorrak) > 0 ) {
+                $this->addFlash('error', 'Erabiltzailea zigor bat dauka indarrean');
+                return $this->redirectToRoute('app_mailegua_index');
+            }
+
+
             if ($user) {
                 $mailegua = new Mailegua();
                 $mailegua->setUdala($this->getUser()->getUdala());
@@ -77,7 +88,7 @@ class MaileguaController extends AbstractController
                 $entityManager->persist($mailegua);
                 $entityManager->flush();
 
-                return $this->redirectToRoute('app_mailegua_hasi', ['id' => $mailegua->getId()]);
+                return $this->redirectToRoute('app_mailegua_01-hasi', ['id' => $mailegua->getId()]);
             } else {
 
 
@@ -124,12 +135,12 @@ class MaileguaController extends AbstractController
         ]);
     }
 
-    #[Route('/{id}/hasi', name: 'app_mailegua_hasi', methods: ['GET', 'POST'])]
+    #[Route('/{id}/hasi', name: 'app_mailegua_01-hasi', methods: ['GET', 'POST'])]
     public function hasi(Request $request, $id, EntityManagerInterface $entityManager): Response
     {
         $mailegua = $entityManager->getRepository(Mailegua::class)->find($id);
 
-        $form = $this->createForm(MaileguaHasiType::class, $mailegua);
+        $form = $this->createForm(Mailegua01HasiType::class, $mailegua);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
@@ -153,7 +164,7 @@ class MaileguaController extends AbstractController
     {
         $mailegua = new Mailegua();
         $mailegua->setUdala($this->getUser()->getUdala());
-        $formFinder = $this->createForm(MaileguaFinderType::class, $mailegua, [
+        $formFinder = $this->createForm(Mailegua02FinderType::class, $mailegua, [
             'method' => 'GET',
             'action' => $this->generateUrl('app_mailegua_itzulketa')
         ]);
@@ -161,10 +172,10 @@ class MaileguaController extends AbstractController
 
         if ($formFinder->isSubmitted() && $formFinder->isValid()) {
             $filter = $formFinder->getData();
-
+            $userNan = $formFinder->get('erabiltzailea')->getData();
             return $this->render('mailegua/itzulketa.html.twig', [
                 'form' => $formFinder->createView(),
-                'finderMaileguak' => $maileguaRepository->getByFinder($filter),
+                'finderMaileguak' => $maileguaRepository->getByFinder($filter, $userNan),
                 'lastMaileguak' => $maileguaRepository->getLastTen()
             ]);
         }
@@ -178,7 +189,7 @@ class MaileguaController extends AbstractController
     #[Route('/{id}/itzuli', name: 'app_mailegua_itzuli', methods: ['GET', 'POST'])]
     public function itzuli(Request $request, Mailegua $mailegua, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(MaileguaFinType::class, $mailegua, [
+        $form = $this->createForm(Mailegua03FinType::class, $mailegua, [
             'method' => 'POST',
             'action' => $this->generateUrl('app_mailegua_itzuli', ['id' => $mailegua->getId()])
         ]);
@@ -202,7 +213,7 @@ class MaileguaController extends AbstractController
     #[Route('/{id}/amaitu', name: 'app_mailegua_zigorra_matxura', methods: ['GET', 'POST'])]
     public function zigorramatxura(Request $request, Mailegua $mailegua, EntityManagerInterface $entityManager): Response
     {
-        $form = $this->createForm(MaileguaZigorraType::class, $mailegua, [
+        $form = $this->createForm(Mailegua04ZigorraType::class, $mailegua, [
             'method' => 'POST',
             'action' => $this->generateUrl('app_mailegua_zigorra_matxura', ['id' => $mailegua->getId()])
         ]);

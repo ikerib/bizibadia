@@ -10,14 +10,14 @@ use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class MaileguaFinType extends AbstractType
+class Mailegua03FinType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
             ->add('dateEnd', DateTimeType::class, [
                 'required' => true,
-                'label' => 'Hasierako eguna eta ordua',
+                'label' => 'Amaierako eguna eta ordua',
                 'widget' => 'single_text',
                 'html5' => false,
                 'attr' => [

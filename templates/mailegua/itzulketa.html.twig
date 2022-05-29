@@ -31,7 +31,7 @@
 
                         <div class="row">&nbsp;</div>
                         {% if  finderMaileguak is defined%}
-                            <table class="table">
+                            <table class="table table-striped table-hover projects datatable">
                                 <thead>
                                 <tr>
                                     <th style="width: 5%;">#</th>
@@ -47,7 +47,7 @@
                                     <tr>
                                         <td>{{ mailegua.id }}</td>
                                         <td>{{ mailegua.dateStart ? mailegua.dateStart|date('Y-m-d H:i:s') : '' }}</td>
-                                        <td>{{ mailegua.erabiltzailea }}</td>
+                                        <td>{% if mailegua.erabiltzailea.udala == app.user.udala %}{{ mailegua.erabiltzailea }}{% else %}{{ mailegua.erabiltzailea.nan }}{% endif %}</td>
                                         <td>{{ mailegua.startGunea }}</td>
                                         <td>{{ mailegua.bizikleta }}</td>
                                         <td>
@@ -82,7 +82,7 @@
                                 <tr>
                                     <td>{{ mailegua.id }}</td>
                                     <td>{{ mailegua.dateStart ? mailegua.dateStart|date('Y-m-d H:i:s') : '' }}</td>
-                                    <td>{{ mailegua.erabiltzailea }}</td>
+                                    <td>{% if mailegua.erabiltzailea.udala == app.user.udala %}{{ mailegua.erabiltzailea }}{% else %}{{ mailegua.erabiltzailea.nan }}{% endif %}</td>
                                     <td>{{ mailegua.startGunea }}</td>
                                     <td>{{ mailegua.bizikleta }}</td>
                                     <td>

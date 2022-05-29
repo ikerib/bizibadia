@@ -37,7 +37,7 @@ class ZigorraType extends AbstractType
                 'required' => false
             ])
             ->add('canRent', null, [
-                'label' => 'Alokatzea galarazi',
+                'label' => 'Alokatu ahal du',
                 'required' => false
             ])
         ;

@@ -48,4 +48,14 @@ class ErabiltzaileZigorraRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getResult();
     }
+
+    public function zigorrak($user) {
+        $qb = $this->createQueryBuilder('ez')
+            ->innerJoin('ez.erabiltzailea', 'e')
+            ->andWhere('e.id = :userid')->setParameter('userid', $user->getId())
+            ->andWhere('ez.dateEnd >= :date')->setParameter(':date', new \DateTime())
+        ;
+
+        return  $qb->getQuery()->getResult();
+    }
 }

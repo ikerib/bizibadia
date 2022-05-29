@@ -61,7 +61,14 @@ class Zigorra
 
     public function __toString(): string
     {
-        return $this->name;
+        if ( $this->canRent === true ) {
+            return $this->name . ' // Alokatzen jarraitu ahal du';
+        }
+
+        return $this->name . ' // Alokatzea galarazi: (' . $this->egunak . ')';
+
+
+
     }
 
     /***************************************************************************************/

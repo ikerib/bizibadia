@@ -51,7 +51,6 @@ class AppFixtures extends Fixture
         // ERABILTZAILEAK
         $superUser = new User();
         $superUser->setName('SuperUser');
-        $superUser->setSurname('-');
         $superUser->setEmail('superuser@udal.com');
         $superUser->setUsername('superadmin');
         $superUser->setLanguage('Eu');
@@ -65,7 +64,6 @@ class AppFixtures extends Fixture
 
         $userLezo = new User();
         $userLezo->setName('Lezoko Udala');
-        $userLezo->setSurname('Udala');
         $userLezo->setRoles(['ROLE_ADMIN']);
         $userLezo->setLanguage('Es');
         $userLezo->setUsername('lezo');
@@ -80,7 +78,6 @@ class AppFixtures extends Fixture
 
         $userPasaia = new User();
         $userPasaia->setName('Pasaiako Udala');
-        $userPasaia->setSurname('Udala');
         $userPasaia->setRoles(['ROLE_ADMIN']);
         $userPasaia->setLanguage('Eu');
         $userPasaia->setUsername('pasaia');
@@ -93,27 +90,27 @@ class AppFixtures extends Fixture
         $userPasaia->setUdala($udalaP);
         $manager->persist($userPasaia);
 
-        $udalak = [$udalaP, $udalaL];
-        $hizkuntzak = ['Eu', 'Es'];
-        for ($i = 0; $i < 20; $i++) {
-            $username = "username$i";
-            $udal = $udalak[array_rand($udalak)];
-            $u = new User();
-            $u->setName($username);
-            $u->setSurname("Surname $udal");
-            $u->setUsername($username . $i);
-            $u->setEmail("$username@udala.com");
-            $u->setLanguage($hizkuntzak[array_rand($hizkuntzak)]);
-            $u->setUdala($udal);
-            $u->setCanRent(true);
-            $u->setRoles(['ROLE_USER']);
-            $hashedPassword = $this->encoder->hashPassword(
-                $u,
-                (string)$username
-            );
-            $u->setPassword($hashedPassword);
-            $manager->persist($u);
-        }
+//        $udalak = [$udalaP, $udalaL];
+//        $hizkuntzak = ['Eu', 'Es'];
+//        for ($i = 0; $i < 20; $i++) {
+//            $username = "username$i";
+//            $udal = $udalak[array_rand($udalak)];
+//            $u = new User();
+//            $u->setName($username);
+//            $u->setSurname("Surname $udal");
+//            $u->setUsername($username . $i);
+//            $u->setEmail("$username@udala.com");
+//            $u->setLanguage($hizkuntzak[array_rand($hizkuntzak)]);
+//            $u->setUdala($udal);
+//            $u->setCanRent(true);
+//            $u->setRoles(['ROLE_USER']);
+//            $hashedPassword = $this->encoder->hashPassword(
+//                $u,
+//                (string)$username
+//            );
+//            $u->setPassword($hashedPassword);
+//            $manager->persist($u);
+//        }
 
 //        $guneak = [];
 //        $g1 = new Gunea();

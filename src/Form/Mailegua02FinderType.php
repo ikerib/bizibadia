@@ -2,13 +2,16 @@
 
 namespace App\Form;
 
+use App\Entity\Gunea;
 use App\Entity\Mailegua;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class MaileguaFinderType extends AbstractType
+class Mailegua02FinderType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -23,9 +26,19 @@ class MaileguaFinderType extends AbstractType
                     'data-provide' => 'datetimepicker',
                 ],
             ])
-            ->add('erabiltzailea')
+            ->add('erabiltzailea', TextType::class,[
+                'label' => 'Erabiltzailea',
+                'required' => false,
+                'mapped' => false,
+                'attr' => ['autocomplete' => 'off']
+            ])
             ->add('bizikleta')
-            ->add('startGunea')
+            ->add('startGunea', EntityType::class, [
+                'class' => Gunea::class,
+                'label' => 'Hasierako gunea',
+                'placeholder' => 'Aukeratu bat',
+                'required' => false
+            ])
         ;
     }
 

@@ -63,6 +63,7 @@ class Import05ZigorraCommand extends Command
             $zi->setMaila($z['maila']);
             $zi->setZenbatekoa((float)$z['zenbatekoa']);
             $zi->setOldid($z['id']);
+            $em->persist($zi);
             $progressBar->advance();
         }
         $em->flush();

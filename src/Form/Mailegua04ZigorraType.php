@@ -10,7 +10,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class MaileguaZigorraType extends AbstractType
+class Mailegua04ZigorraType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
