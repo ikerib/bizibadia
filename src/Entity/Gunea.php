@@ -24,10 +24,11 @@ class Gunea
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups(["bizikleta:list"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255)]
-    #[Groups(["gunea:list"])]
+    #[Groups(["gunea:list", "bizikleta:list"])]
     private $name;
 
     #[ORM\Column(type: 'string', length: 255)]

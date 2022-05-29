@@ -30,6 +30,8 @@ require('@fortawesome/fontawesome-free/css/all.min.css');
 require('@fortawesome/fontawesome-free/js/all.js');
 require('./lib/bootstrap-daterangepicker/js/bootstrap-datetimepicker.min')
 require('select2')
+const axios = require('axios').default;
+
 
 $(document).ready(function() {
 
@@ -77,5 +79,20 @@ $(document).ready(function() {
 
     $('#btnSaveButton').on('click', function () {
         $('#crudSubmitButton').trigger('click');
+    });
+
+    $('#mailegua01_hasi_bizikleta').on('select2:select', function (e) {
+        const bizikletaID = e.params.data.id;
+        const url = "/api/bizikletas/" + bizikletaID;
+
+        axios.get(url).then(function(data){
+            if ( data.notes !== null) {
+                $('#btnOharrakModal').show();
+                $('#modalh4').html("Bastidorea: " + data.data.bastidorea);
+                $('#modaloharrak').html(data.data.notes)
+            } else {
+                $('#btnOharrakModal').hide();
+            }
+        })
     });
 });

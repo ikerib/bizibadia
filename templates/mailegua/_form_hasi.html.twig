@@ -14,6 +14,21 @@
                 >
             </div>
             {{ form_row(form.bizikleta) }}
+            <button id="btnOharrakModal" type="button" class="btn btn-warning"
+                    data-toggle="modal" data-target=".bs-example-modal-sm" style="display: none;"><i class="fa-solid fa-note"></i> Oharrak</button>
+            <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" style="display: none;" aria-hidden="true">
+                <div class="modal-dialog modal-sm">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <h4 id="modalh4"></h4>
+                            <div id="modaloharrak"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">{{ "Itxi" | trans}}</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <div class="col-md-2"></div>
     </div>

@@ -2,13 +2,21 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\BizikletaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: BizikletaRepository::class)]
+#[ApiResource(
+    collectionOperations: ['get'],
+    itemOperations: ['get'],
+    normalizationContext: ['groups' => ['bizikleta:list']],
+
+)]
 class Bizikleta
 {
     use TimestampableEntity;
@@ -16,18 +24,23 @@ class Bizikleta
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column(type: 'integer')]
+    #[Groups(["bizikleta:list"])]
     private $id;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups(["bizikleta:list"])]
     private $code;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups(["bizikleta:list"])]
     private $erregistroa;
 
     #[ORM\Column(type: 'string', length: 255, nullable: true)]
+    #[Groups(["bizikleta:list"])]
     private $bastidorea;
 
     #[ORM\Column(type: 'boolean')]
+    #[Groups(["bizikleta:list"])]
     private $isAlokatuta;
 
     /***************************************************************************************/
@@ -38,9 +51,11 @@ class Bizikleta
     private $udala;
 
     #[ORM\ManyToOne(targetEntity: Gunea::class, inversedBy: 'bizikletak')]
+    #[Groups(["bizikleta:list"])]
     private $gunea;
 
     #[ORM\Column(type: 'text', nullable: true)]
+    #[Groups(["bizikleta:list"])]
     private $notes;
 
     #[ORM\OneToMany(mappedBy: 'bizikleta', targetEntity: Mailegua::class)]
