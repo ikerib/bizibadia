@@ -266,6 +266,19 @@ class MaileguaController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $zigorra = $mailegua->getZigorra();
+            $erab = $mailegua->getErabiltzailea();
+            $ez = new ErabiltzaileZigorra();
+            $ez->setErabiltzailea($erab);
+            $ez->setZigorra($zigorra);
+            $ez->setDateStart(new \DateTime());
+            if ( $zigorra->getEgunak()) {
+                $d = new \DateTime();
+                $egunak = $zigorra->getEgunak();
+                $d->modify("$egunak day");
+                $ez->setDateEnd($d);
+            }
+            $entityManager->persist($ez);
             $entityManager->flush();
 
             return $this->redirectToRoute('app_mailegua_index', [], Response::HTTP_SEE_OTHER);

@@ -13,6 +13,6 @@
       onsubmit="return confirm('{{ "form.delete" | trans}}');">
     <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ user.id) }}">
     <button class="btn btn-xs btn-danger" data-toggle="tooltip" data-placement="top" title="{{ 'Ezabatu' | trans }}">
-        <i class="fa fa-trash"></i>
+        <i class="fa fa-trash"></i> {{ text | default('')  }}
     </button>
 </form>

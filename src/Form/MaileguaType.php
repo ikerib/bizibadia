@@ -28,7 +28,7 @@ class MaileguaType extends AbstractType
                 ],
             ] )
             ->add('dateEnd', DateTimeType::class, [
-                'required' => true,
+                'required' => false,
                 'label' => 'Amaierako eguna eta ordua',
                 'widget' => 'single_text',
                 'html5' => false,
@@ -39,6 +39,7 @@ class MaileguaType extends AbstractType
             ])
             ->add('udala')
             ->add('erabiltzailea', null, [
+                'required' => true,
                 'label' => 'Erabiltzailea',
                 'attr' => [
                     'class' => 'w600 select2'
@@ -63,12 +64,14 @@ class MaileguaType extends AbstractType
                 ]
             ])
             ->add('startGunea', null, [
+                'required' => true,
                 'label' => 'Hasierako gunea',
                 'attr' => [
                     'class' => 'w600 select2'
                 ]
             ])
             ->add('endGunea', EntityType::class, [
+                'required' => false,
                 'class' => Gunea::class,
                 'label' => 'Non uzten du bizikleta? Zein da amaierako gunea?',
                 'placeholder' => 'Aukeratu amaierako gune bat',
@@ -77,6 +80,7 @@ class MaileguaType extends AbstractType
                 ]
             ])
             ->add('zigorra', EntityType::class, [
+                'required' => false,
                 'class' => Zigorra::class,
                 'label' => 'Zigorrik du?',
                 'placeholder' => 'Aukeratu'
