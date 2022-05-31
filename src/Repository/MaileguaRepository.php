@@ -4,6 +4,7 @@ namespace App\Repository;
 
 use App\Entity\Mailegua;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\DBAL\Exception;
 use Doctrine\ORM\Exception\ORMException;
 use Doctrine\ORM\OptimisticLockException;
 use Doctrine\Persistence\ManagerRegistry;
@@ -106,5 +107,24 @@ class MaileguaRepository extends ServiceEntityRepository
         }
 
         return $qb->getQuery()->getResult();
+    }
+
+    public function countByMonth()
+    {
+        try {
+            $conn = $this->getEntityManager()->getConnection();
+            $sql = "
+                SELECT CONCAT(EXTRACT(year from date_start),'-',RIGHT(CONCAT('00',EXTRACT(MONTH FROM date_start)),2)) as hilero,
+                        COUNT(id) as count
+                FROM mailegua
+                WHERE date_start > (current_date - INTERVAL '12 months')
+                GROUP BY hilero
+                ORDER BY hilero DESC
+            ";
+            return $conn->query($sql)->fetchAll();
+
+        } catch (Exception $e) {
+            return $e;
+        }
     }
 }

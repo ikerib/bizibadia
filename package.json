@@ -27,6 +27,7 @@
     "dependencies": {
         "add": "^2.0.6",
         "bootstrap": "^3.3.7",
+        "chart.js": "^3.8.0",
         "ckeditor4": "^4.13.0",
         "datatables.net": "^1.11.5",
         "datatables.net-dt": "^1.11.5",

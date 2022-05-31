@@ -12,6 +12,7 @@
 @import "select2/dist/css/select2.min.css";
 @import "select2-bootstrap-theme/dist/select2-bootstrap.min.css";
 @import "gentella.css";
+@import "custom.min.css";
 
 .x_title {
   text-align: end !important;
@@ -25,4 +26,12 @@
   min-width: 0;
   width: auto;
   display: inline;
+}
+
+.faIcon {
+  margin: 0;
+  font-size: 60px;
+  line-height: 0;
+  vertical-align: bottom;
+  padding: 0;
 }
