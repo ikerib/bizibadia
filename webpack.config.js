@@ -8,6 +8,7 @@ Encore
     .setOutputPath('public/build/')
     .setPublicPath('/build')
     .addEntry('app', './assets/app.js')
+    .addEntry('charts', './assets/charts.js')
     .addEntry('gentella', './assets/gentella.js')
     .addStyleEntry('cssGentella', './assets/styles/gentella.css')
     .splitEntryChunks()

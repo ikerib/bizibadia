@@ -1,18 +1,5 @@
 version: "3.7"
 services:
-
-  mysql:
-    container_name: bizibadia_mysql
-    image: mysql
-    command: ["--default-authentication-plugin=mysql_native_password"]
-    ports:
-      - "3306:3306"
-    environment:
-      DOCKER_MYSQL_USER: ${DOCKER_MYSQL_USER}
-      MYSQL_ROOT_PASSWORD: ${DOCKER_MYSQL_PASSWORD}
-      MYSQL_DATABASE: ${DOCKER_MYSQL_DATABASE}
-    volumes:
-      - v_bizibadia_mysql:/var/lib/mysql
   db:
     container_name: bizibadia_db
     image: postgres:${POSTGRES_VERSION:-13}-alpine
