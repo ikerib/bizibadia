@@ -77,7 +77,7 @@ class Import07MaileguaCommand extends Command
             $ma->setStartGunea($guneHasi);
             if ( $m['guneaamaitu_id'] !== "" ) {
                 $guneEnd = $em->getRepository(Gunea::class)->findOneBy(['oldid' => $m['guneaamaitu_id']]);
-                $ma->setStartGunea($guneEnd);
+                $ma->setEndGunea($guneEnd);
             }
             if ( $m['bizikleta_id'] ) {
                 $bizikleta = $em->getRepository(Bizikleta::class)->findOneBy(['oldid' => $m['bizikleta_id']]);
@@ -87,6 +87,7 @@ class Import07MaileguaCommand extends Command
                 $ibi = $em->getRepository(Ibilbidea::class)->findOneBy(['oldid' => $m['ibilbidea_id']]);
                 $ma->setIbilbidea($ibi);
             }
+
             $em->persist($ma);
             $progressBar->advance();
         }

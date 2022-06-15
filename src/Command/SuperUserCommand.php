@@ -43,7 +43,6 @@ class SuperUserCommand extends Command
         $helper = $this->getHelper('question');
 
         $qName = new Question('Izena => ', 'superadmin');
-        $qSurname = new Question('Abizenak => ', 'superadmin');
         $qEmail = new Question('Email => ', 'iibarguren@pasaia.net');
         $qLang= new Question('Hizkuntza (eu/es) => ', 'eu');
         $qUsername = new Question('Erabiltzaile izena => ', 'superadmin');
@@ -51,7 +50,6 @@ class SuperUserCommand extends Command
         //$qUdala= new Question('Udala (pasaia/lezo/...) => ', 'pasaia');
 
         $name = $helper->ask($input, $output, $qName);
-        $surname = $helper->ask($input, $output, $qSurname);
         $email = $helper->ask($input, $output, $qEmail);
         $lang = $helper->ask($input, $output, $qLang);
         $username = $helper->ask($input, $output, $qUsername);
@@ -69,7 +67,6 @@ class SuperUserCommand extends Command
 
         $user = new User();
         $user->setName($name);
-        $user->setSurname($surname);
         $user->setEmail($email);
         $user->setLanguage($lang);
         $user->setUsername($username);

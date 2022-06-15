@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-#[Route('/{_locale}/kudeatu/bizikleta')]
+#[Route('/{_locale}/kudeatu/gunea')]
 #[IsGranted("ROLE_KUDEATU")]
 class BizikletaController extends AbstractController
 {
