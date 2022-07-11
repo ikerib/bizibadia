@@ -13,3 +13,4 @@ storage/framework/views/**
 docker/ssl/
 /docker/uploads/
 /doc/
+!/.vscode/

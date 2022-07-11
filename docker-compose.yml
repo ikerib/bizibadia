@@ -26,7 +26,7 @@ services:
         - GROUP_ID=${GROUP_ID}
         - DEBUGMODE=${DEBUGMODE}
         - FOSJSDUMP=${FOSJSDUMP}
-    user: "675847499:675807745"
+    user: "${USER_ID}:${GROUP_ID}"
     depends_on:
       - db
       - redis
@@ -74,4 +74,4 @@ networks:
   default:
     ipam:
       config:
-        - subnet: 172.202.0.0/16
+        - subnet: 172.208.0.0/16

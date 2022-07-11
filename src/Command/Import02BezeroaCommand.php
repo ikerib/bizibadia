@@ -58,7 +58,7 @@ class Import02BezeroaCommand extends Command
         foreach ($bezeroak as $b) {
             $user = new User();
             $user->setName($b['izena']);
-            $user->setUsername($b['nan']);
+            $user->setUsername($b['username']);
             $hashedPassword = $this->encoder->hashPassword(
                 $user,
                 $b['nan']

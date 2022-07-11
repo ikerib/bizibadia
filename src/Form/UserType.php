@@ -95,28 +95,36 @@ class UserType extends AbstractType
                 ],
             ])
             ->add('canRent', CheckboxType::class, [
-                'label' => 'Alokatu ahal du?'
+                'label' => 'Alokatu ahal du?',
+                'required' => false
             ])
             ->add('bazkidea', CheckboxType::class, [
-                'label' => 'Bazkidea da?'
+                'label' => 'Bazkidea da?',
+                'required' => false
             ])
             ->add('ordainketa', CheckboxType::class, [
-                'label' => 'Ordainketa'
+                'label' => 'Ordainketa',
+                'required' => false
             ])
             ->add('pasaitarra', CheckboxType::class, [
-                'label' => 'Herritarra?'
+                'label' => 'Herritarra?',
+                'required' => false
             ])
             ->add('sinatuta', CheckboxType::class, [
-                'label' => 'Sinatuta'
+                'label' => 'Sinatuta',
+                'required' => false
             ])
             ->add('udallangilea', CheckboxType::class, [
-                'label' => 'Udal langilea'
+                'label' => 'Udal langilea',
+                'required' => false
             ])
             ->add('baimenberezia', CheckboxType::class, [
-                'label' => 'Baimen berezia'
+                'label' => 'Baimen berezia',
+                'required' => false
             ])
             ->add('oharrak', CKEditorType::class,[
-                'label' => 'Oharrak'
+                'label' => 'Oharrak',
+                'required' => false
             ])
         ;
 
