@@ -34,3 +34,4 @@ docker/uploads
 .phpunit.result.cache
 ###< phpunit/phpunit ###
 !/.vscode/
+.vscode
