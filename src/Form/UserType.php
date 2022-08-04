@@ -82,7 +82,8 @@ class UserType extends AbstractType
                 'label' => 'NAN'
             ])
             ->add('mugikorra', TextType::class, [
-                'label' => 'Mugikorra'
+                'label' => 'Mugikorra',
+                'required' => false
             ])
             ->add('iraungitze', DateTimeType::class, [
                 'required' => true,

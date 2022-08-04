@@ -19,17 +19,14 @@ use Symfony\Component\Serializer\Annotation\Groups;
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
 #[UniqueEntity(fields: ['username'], message: 'There is already an account with this username')]
-#[ApiResource(
-    collectionOperations: ['get'],
-    itemOperations: ['get'],
-//    attributes: [
-//        'filters' => ['nan']
-//    ],
-    denormalizationContext: ['groups' => ['user:list','user:item']],
-    normalizationContext: ['groups' => ['user:list','user:item']],
-    order: ['name' => 'ASC'],
-    paginationEnabled: false
-)]
+//#[ApiResource(
+//    collectionOperations: ['get'],
+//    itemOperations: ['get'],
+//    denormalizationContext: ['groups' => ['user:list','user:item']],
+//    normalizationContext: ['groups' => ['user:list','user:item']],
+//    order: ['name' => 'ASC'],
+//    paginationEnabled: false
+//)]
 //#[ApiFilter(SearchFilter::class, properties: ['id' => 'exact', 'nan' => 'exact'])]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {

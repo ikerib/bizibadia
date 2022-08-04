@@ -60,6 +60,7 @@ class Gunea
     #[ORM\ManyToOne(targetEntity: User::class)]
     private $manager;
 
+    #[Groups(["gunea:list"])]
     #[ORM\OneToMany(mappedBy: 'gunea', targetEntity: Bizikleta::class)]
     private $bizikletak;
 

@@ -9,12 +9,12 @@ use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: MaileguaRepository::class)]
-#[ApiResource(
-    collectionOperations: ['post'],
-    itemOperations: ['get'],
-    denormalizationContext: ['groups' => ['mailegua:write']],
-    normalizationContext: ['groups' => ['mailegua:read']]
-)]
+//#[ApiResource(
+//    collectionOperations: ['post'],
+//    itemOperations: [],
+//    denormalizationContext: ['groups' => ['mailegua:write']],
+//    normalizationContext: ['groups' => ['mailegua:read']]
+//)]
 class Mailegua
 {
 
