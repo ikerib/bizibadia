@@ -14,13 +14,13 @@ help:
 	@echo 'targets'
 	@egrep '^(.+)\:\ ##\ (.+)' ${MAKEFILE_LIST} | column -t -c 2 -s ":#"
 
-build:
-	docker compose --env-file .env.local
+build: ## build
+	docker compose --env-file .env.local build
 
-build-force:
+build-force:## build-force
 	docker compose --env-file .env.local build --force-rm --no-cache
 
-restart:
+restart:##restart
 	$(MAKE) stop && $(MAKE) run
 
 run:
