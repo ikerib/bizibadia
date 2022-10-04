@@ -123,6 +123,11 @@
                                         <i class="fa-solid fa-book-skull"></i>
                                     </a>
 
+                                    <a class="btn btn-primary btn-xs" href="{{ path('app_user_change_password', {'id': user.id}) }}"
+                                       data-toggle="tooltip" data-placement="top" title="{{ 'Pasahitza aldatu' | trans }}">
+                                        <i class="fa fa-key"></i>
+                                    </a>
+
                                     {{ include('user/_delete_form.html.twig') }}
 
                                 </td>

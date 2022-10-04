@@ -47,6 +47,9 @@ class GuneaType extends AbstractType
             ->add('udala')
             ->add('manager', null,[
                 'label' => 'Nor da arduraduna?',
+                'attr' => [
+                    'class' => 'select2'
+                ]
             ])
         ;
     }

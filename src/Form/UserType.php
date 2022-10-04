@@ -50,6 +50,7 @@ class UserType extends AbstractType
                 ]
             ])
             ->add('username', null, [
+                'attr'=>['autocomplete' => 'off'],
                 'label' => 'form.user.username',
                 'constraints' => [
                     new NotBlank(),
