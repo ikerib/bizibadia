@@ -39,7 +39,7 @@ class Bizikleta
     #[Groups(["bizikleta:list"])]
     private $bastidorea;
 
-    #[ORM\Column(type: 'boolean')]
+    #[ORM\Column(type: 'boolean', nullable: true)]
     #[Groups(["bizikleta:list"])]
     private $isAlokatuta;
 
