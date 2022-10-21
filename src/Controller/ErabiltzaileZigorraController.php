@@ -24,7 +24,6 @@ class ErabiltzaileZigorraController extends AbstractController
     #[Route('/user/{userid}/list', name: 'app_erabiltzaile_zigorra_user', methods: ['GET'])]
     public function erabiltzailezigorrauser(ErabiltzaileZigorraRepository $erabiltzaileZigorraRepository, $userid): Response
     {
-        dump($erabiltzaileZigorraRepository->findAllFromUser($userid));
         return $this->render('erabiltzaile_zigorra/index.html.twig', [
             'erabiltzaile_zigorras' => $erabiltzaileZigorraRepository->findAllFromUser($userid),
         ]);
