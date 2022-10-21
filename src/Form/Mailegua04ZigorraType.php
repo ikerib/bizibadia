@@ -18,6 +18,7 @@ class Mailegua04ZigorraType extends AbstractType
         $user = $options['user'];
         $builder
             ->add('zigorra', EntityType::class, [
+                'required' => false,
                 'class' => Zigorra::class,
                 'query_builder' => function(EntityRepository $er) use ($user) {
                     return $er->createQueryBuilder('u')
