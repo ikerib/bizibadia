@@ -215,6 +215,7 @@ class MaileguaController extends AbstractController
     {
         $form = $this->createForm(Mailegua04ZigorraType::class, $mailegua, [
             'method' => 'POST',
+            'user' => $this->getUser(),
             'action' => $this->generateUrl('app_mailegua_zigorra_matxura', ['id' => $mailegua->getId()])
         ]);
         $form->handleRequest($request);

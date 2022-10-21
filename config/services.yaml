@@ -43,7 +43,7 @@ services:
             - { 'prefix': 'bizibadia_', 'ttl': 2592000 } # 30 egun
             -
     DoctrineFilterConfigurator:
-        class: App\Services\FilterConfigurator
+        class: App\Filter\FilterConfigurator
         arguments:
             - "@doctrine.orm.entity_manager"
             - "@security.token_storage"

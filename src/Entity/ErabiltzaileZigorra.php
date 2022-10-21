@@ -33,6 +33,11 @@ class ErabiltzaileZigorra
     #[ORM\ManyToOne(targetEntity: Zigorra::class, inversedBy: 'zigorrak')]
     private $zigorra;
 
+    public function __toString()
+    {
+        return (string)$this->zigorra;
+    }
+
     /***************************************************************************************/
     /***************************************************************************************/
     /***************************************************************************************/

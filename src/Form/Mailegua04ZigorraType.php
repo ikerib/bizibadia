@@ -4,6 +4,7 @@ namespace App\Form;
 
 use App\Entity\Mailegua;
 use App\Entity\Zigorra;
+use Doctrine\ORM\EntityRepository;
 use FOS\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
@@ -14,9 +15,15 @@ class Mailegua04ZigorraType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $user = $options['user'];
         $builder
             ->add('zigorra', EntityType::class, [
                 'class' => Zigorra::class,
+                'query_builder' => function(EntityRepository $er) use ($user) {
+                    return $er->createQueryBuilder('u')
+                        ->innerJoin('u.udala', 'udala')
+                        ->andWhere('udala.id=:udalaid')->setParameter('udalaid', $user->getUdala()->getId());
+                },
                 'label' => 'Zigorrik du?',
                 'placeholder' => 'Aukeratu'
             ])
@@ -31,6 +38,7 @@ class Mailegua04ZigorraType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Mailegua::class,
+            'user' => null
         ]);
     }
 }

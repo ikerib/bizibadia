@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Services;
+namespace App\Filter;
 
 
-use Doctrine\ORM\EntityManagerInterface;
-use Doctrine\ORM\Query\FilterCollection;
-use Symfony\Component\HttpFoundation\RequestStack;
-use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Doctrine\Common\Annotations\Reader;
+use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\RequestStack;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use function App\Services\str_contains;
+
 
 class FilterConfigurator
 {
@@ -35,8 +36,7 @@ class FilterConfigurator
         $route = $this->requestStack->getCurrentRequest()->get('_route');
         $udalaFilter = $this->em->getFilters('UdalaFilter');
 
-
-        if (($user = $this->getUser()) && (!str_contains($route,'app_mailegua_')) ) {
+        if (($user = $this->getUser()) && (!\str_contains($route,'app_mailegua_')) ) {
             if ( !$udalaFilter->isEnabled('UdalaFilter')) {
                 $filter = $this->em->getFilters()->enable('UdalaFilter');
             }
