@@ -36,6 +36,9 @@ class FilterConfigurator
         $route = $this->requestStack->getCurrentRequest()->get('_route');
         $udalaFilter = $this->em->getFilters('UdalaFilter');
 
+        if ($route === 'home') {
+            return '';
+        }
         if (($user = $this->getUser()) && (!\str_contains($route,'app_mailegua_')) ) {
             if ( !$udalaFilter->isEnabled('UdalaFilter')) {
                 $filter = $this->em->getFilters()->enable('UdalaFilter');
