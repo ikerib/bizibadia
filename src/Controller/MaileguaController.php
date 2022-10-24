@@ -72,6 +72,10 @@ class MaileguaController extends AbstractController
             $data = $form->getData('nan');
             $user = $entityManager->getRepository(User::class)->findUserWithNoFilter($data['nan']);
 
+            if (!$user) {
+                $this->addFlash('error', 'Ez da NAN zenbaki hori duen erabiltzailerik topatu.');
+                return $this->redirectToRoute('app_mailegua_00-erabiltzailea_select');
+            }
             // begiratu ia zigorrik duen
             $zigorrak = $entityManager->getRepository(ErabiltzaileZigorra::class)->zigorrak($user);
 
