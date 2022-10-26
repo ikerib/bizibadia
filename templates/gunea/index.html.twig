@@ -33,6 +33,7 @@
                                 <th>{{ "Ordutegia" | trans}}</th>
                                 <th>{{ "Latitudea" | trans}}</th>
                                 <th>{{ "Longitudea" | trans}}</th>
+                                <th>{{ "Bizikletak" | trans}}</th>
                                 <th style="width: 20%"></th>
                             </tr>
                         </thead>
@@ -44,6 +45,7 @@
                                 <td>{{ gunea.ordutegia | raw }}</td>
                                 <td>{{ gunea.latitude }}</td>
                                 <td>{{ gunea.longitude }}</td>
+                                <td><a class="btn btn-default btn-xs" href="{{ path('app_gunea_show', {'id': gunea.id}) }}">{{ gunea.bizikletak | length }}</a></td>
                                 <td class="text-center">
                                     <ul class="list-inline">
                                         <li>

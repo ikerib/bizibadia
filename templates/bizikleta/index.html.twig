@@ -1,13 +1,13 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Guneen mantenua{% endblock %}
+{% block title %}Bizikleten mantenua{% endblock %}
 
 {% block body %}
 
 <div class="">
     <div class="page-title">
         <div class="title_left">
-            <h3>Guneen <small>Mantenua</small></h3>
+            <h3>Bizikleten <small>Mantenua</small></h3>
         </div>
         <div class="title_right">
             <div class="col-md-5 col-sm-5   form-group pull-right top_search">
@@ -31,6 +31,7 @@
                                 <th>{{ "Kodea" | trans}}</th>
                                 <th>{{ "Erregistroa" | trans}}</th>
                                 <th>{{ "Bastidorea" | trans}}</th>
+                                <th>{{ "Gunea" | trans}}</th>
                                 <th style="width: 20%"></th>
                             </tr>
                         </thead>
@@ -40,10 +41,10 @@
                                 <td>{{ bizikletum.code }}</td>
                                 <td>{{ bizikletum.erregistroa }}</td>
                                 <td>{{ bizikletum.bastidorea }}</td>
+                                <td>{{ bizikletum.gunea }}</td>
                                 <td class="text-center">
                                     <ul class="list-inline">
                                         <li>
-{#                                            <a class="btn btn-primary" href="{{ path('app_bizikleta_edit', {'id': bizikletum.id}) }}"><i class="fa fa-edit"></i> {{ "Editatu" | trans}}</a>#}
                                             <a class="btn btn-primary btn-xs" href="{{ path('app_bizikleta_edit', {'id': bizikletum.id}) }}"
                                                data-toggle="tooltip" data-placement="top" title="{{ 'Editatu' | trans }}">
                                                 <i class="fa fa-pencil"></i>
@@ -51,8 +52,6 @@
                                         </li>
                                         <li>{{include('bizikleta/_delete_form.html.twig')}}</li>
                                     </ul>
-
-
                                 </td>
                             </tr>
                         {% else %}
