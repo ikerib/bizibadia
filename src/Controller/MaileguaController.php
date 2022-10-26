@@ -144,7 +144,11 @@ class MaileguaController extends AbstractController
     {
         $mailegua = $entityManager->getRepository(Mailegua::class)->find($id);
 
-        $form = $this->createForm(Mailegua01HasiType::class, $mailegua);
+        $form = $this->createForm(Mailegua01HasiType::class, $mailegua, [
+            'method' => 'POST',
+            'user' => $this->getUser(),
+            'action' => $this->generateUrl('app_mailegua_01-hasi', ['id' => $id])
+        ]);
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {

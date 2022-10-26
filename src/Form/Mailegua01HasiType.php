@@ -19,22 +19,8 @@ class Mailegua01HasiType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
+        $user = $options['user'];
         $builder
-//            ->add('erabiltzailea', EntityType::class, [
-//                'class' => User::class,
-//                'query_builder' => function (EntityRepository $er) {
-//                    return $er->createQueryBuilder('e')
-//                        ->andWhere('e.canRent <> False or e.canRent is NULL')
-//                        ->orderBy('e.surname', 'ASC')
-//                        ->orderBy('e.name', 'ASC')
-//                        ;
-//                },
-//                'label' => 'Erabiltzailea',
-//                'placeholder' => 'Aukeratu erabiltzailea',
-//                'attr' => [
-//                    'class' => 'w600 select2'
-//                ]
-//            ])
             ->add('startGunea', EntityType::class, [
                 'class' => Gunea::class,
                 'label' => 'Hasierako gunea',
@@ -45,10 +31,11 @@ class Mailegua01HasiType extends AbstractType
             ])
             ->add('bizikleta', EntityType::class, [
                 'class' => Bizikleta::class,
-                'query_builder' => function (EntityRepository $er) {
+                'query_builder' => function (EntityRepository $er) use ($user) {
                     return $er->createQueryBuilder('b')
-//                            ->where('b.isAlokatuta <> 1 or b.isAlokatuta is NULL')
-                            ->orderBy('b.code', 'ASC');
+                        ->innerJoin('b.udala', 'udala')
+                        ->andWhere('udala.id=:udalaid')->setParameter('udalaid', $user->getUdala()->getId())
+                        ->orderBy('b.code', 'ASC');
                 },
                 'placeholder' => 'Aukeratu alokatuko duen bizikleta',
                 'label' => 'Bizikleta',
@@ -89,6 +76,7 @@ class Mailegua01HasiType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Mailegua::class,
+            'user' => null
         ]);
     }
 }
