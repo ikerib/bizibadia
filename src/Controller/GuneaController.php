@@ -22,7 +22,6 @@ class GuneaController extends AbstractController
         $guneas = $entityManager
             ->getRepository(Gunea::class)
             ->findAll();
-
         return $this->render('gunea/index.html.twig', [
             'guneas' => $guneas,
         ]);
@@ -50,8 +49,9 @@ class GuneaController extends AbstractController
     }
 
     #[Route('/{id}', name: 'app_gunea_show', methods: ['GET'])]
-    public function show(Gunea $gunea): Response
+    public function show(Gunea $gunea, EntityManagerInterface $entityManager): Response
     {
+        $entityManager->getFilters()->disable('UdalaFilter');
         return $this->render('gunea/show.html.twig', [
             'gunea' => $gunea,
         ]);

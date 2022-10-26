@@ -39,6 +39,7 @@
     <table class="table table-bordered table-bordered table-hover table-striped">
         <thead>
         <tr>
+            <th>{{ "Udala" | trans}}</th>
             <th>{{ "Kodea" | trans}}</th>
             <th>{{ "Erregistroa" | trans}}</th>
             <th>{{ "Bastidorea" | trans}}</th>
@@ -48,6 +49,7 @@
         <tbody>
         {% for bizikleta in gunea.bizikletak %}
             <tr>
+                <td>{{ bizikleta.udala }}</td>
                 <td>{{ bizikleta.code }}</td>
                 <td>{{ bizikleta.erregistroa }}</td>
                 <td>{{ bizikleta.bastidorea }}</td>

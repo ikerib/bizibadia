@@ -31,6 +31,7 @@
                                 <th>{{ "Kodea" | trans}}</th>
                                 <th>{{ "Erregistroa" | trans}}</th>
                                 <th>{{ "Bastidorea" | trans}}</th>
+                                <th>{{ "Alokatua" | trans}}</th>
                                 <th>{{ "Gunea" | trans}}</th>
                                 <th style="width: 20%"></th>
                             </tr>
@@ -41,6 +42,11 @@
                                 <td>{{ bizikletum.code }}</td>
                                 <td>{{ bizikletum.erregistroa }}</td>
                                 <td>{{ bizikletum.bastidorea }}</td>
+                                <td>
+                                    {% if bizikletum.isAlokatuta %}
+                                        <span class="tag">Bai</span>
+                                    {% endif %}
+                                </td>
                                 <td>{{ bizikletum.gunea }}</td>
                                 <td class="text-center">
                                     <ul class="list-inline">
