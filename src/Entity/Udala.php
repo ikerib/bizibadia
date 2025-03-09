@@ -61,10 +61,6 @@ class Udala
         return $this->name;
     }
 
-    /************************************************************************************************/
-    /************************************************************************************************/
-    /************************************************************************************************/
-
     public function getId(): ?int
     {
         return $this->id;
@@ -93,7 +89,7 @@ class Udala
     public function addUser(User $user): self
     {
         if (!$this->users->contains($user)) {
-            $this->users[] = $user;
+            $this->users->add($user);
             $user->setUdala($this);
         }
 
@@ -123,7 +119,7 @@ class Udala
     public function addGuneak(Gunea $guneak): self
     {
         if (!$this->guneak->contains($guneak)) {
-            $this->guneak[] = $guneak;
+            $this->guneak->add($guneak);
             $guneak->setUdala($this);
         }
 
@@ -153,7 +149,7 @@ class Udala
     public function addBizikletak(Bizikleta $bizikletak): self
     {
         if (!$this->bizikletak->contains($bizikletak)) {
-            $this->bizikletak[] = $bizikletak;
+            $this->bizikletak->add($bizikletak);
             $bizikletak->setUdala($this);
         }
 
@@ -183,7 +179,7 @@ class Udala
     public function addIbilbideak(Ibilbidea $ibilbideak): self
     {
         if (!$this->ibilbideak->contains($ibilbideak)) {
-            $this->ibilbideak[] = $ibilbideak;
+            $this->ibilbideak->add($ibilbideak);
             $ibilbideak->setUdala($this);
         }
 
@@ -213,7 +209,7 @@ class Udala
     public function addEguraldiak(Eguraldia $eguraldiak): self
     {
         if (!$this->eguraldiak->contains($eguraldiak)) {
-            $this->eguraldiak[] = $eguraldiak;
+            $this->eguraldiak->add($eguraldiak);
             $eguraldiak->setUdala($this);
         }
 
@@ -243,7 +239,7 @@ class Udala
     public function addZigorrak(Zigorra $zigorrak): self
     {
         if (!$this->zigorrak->contains($zigorrak)) {
-            $this->zigorrak[] = $zigorrak;
+            $this->zigorrak->add($zigorrak);
             $zigorrak->setUdala($this);
         }
 
@@ -273,7 +269,7 @@ class Udala
     public function addMaileguak(Mailegua $maileguak): self
     {
         if (!$this->maileguak->contains($maileguak)) {
-            $this->maileguak[] = $maileguak;
+            $this->maileguak->add($maileguak);
             $maileguak->setUdala($this);
         }
 

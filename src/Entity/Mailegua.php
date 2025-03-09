@@ -4,6 +4,7 @@ namespace App\Entity;
 
 use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\MaileguaRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -63,10 +64,6 @@ class Mailegua
 
     #[ORM\Column(type: 'integer', nullable: true)]
     private $oldid;
-
-    /***************************************************************************************/
-    /***************************************************************************************/
-    /***************************************************************************************/
 
     public function getId(): ?int
     {

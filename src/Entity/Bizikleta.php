@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\BizikletaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -43,6 +44,9 @@ class Bizikleta
     #[Groups(["bizikleta:list"])]
     private $isAlokatuta;
 
+    #[ORM\Column(type: 'boolean', nullable: true)]
+    private $desgaituta = true;
+
     /***************************************************************************************/
     /***************************************************************************************/
     /***************************************************************************************/
@@ -78,10 +82,6 @@ class Bizikleta
     {
          return $this->isAlokatuta;
     }
-
-    /***************************************************************************************/
-    /***************************************************************************************/
-    /***************************************************************************************/
 
     public function getId(): ?int
     {
@@ -129,7 +129,7 @@ class Bizikleta
         return $this->bastidorea;
     }
 
-    public function setBastidorea(string $bastidorea): self
+    public function setBastidorea(?string $bastidorea): self
     {
         $this->bastidorea = $bastidorea;
 
@@ -207,7 +207,7 @@ class Bizikleta
     public function addMaileguak(Mailegua $maileguak): self
     {
         if (!$this->maileguak->contains($maileguak)) {
-            $this->maileguak[] = $maileguak;
+            $this->maileguak->add($maileguak);
             $maileguak->setBizikleta($this);
         }
 
@@ -231,7 +231,7 @@ class Bizikleta
         return $this->isAlokatuta;
     }
 
-    public function setIsAlokatuta(bool $isAlokatuta): self
+    public function setIsAlokatuta(?bool $isAlokatuta): self
     {
         $this->isAlokatuta = $isAlokatuta;
 
@@ -246,6 +246,30 @@ class Bizikleta
     public function setOldid(?int $oldid): self
     {
         $this->oldid = $oldid;
+
+        return $this;
+    }
+
+    public function isAktibo(): ?bool
+    {
+        return $this->aktibo;
+    }
+
+    public function setAktibo(?bool $aktibo): self
+    {
+        $this->aktibo = $aktibo;
+
+        return $this;
+    }
+
+    public function isDesgaituta(): ?bool
+    {
+        return $this->desgaituta;
+    }
+
+    public function setDesgaituta(?bool $desgaituta): self
+    {
+        $this->desgaituta = $desgaituta;
 
         return $this;
     }

@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\ZigorraRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
@@ -71,10 +72,6 @@ class Zigorra
 
     }
 
-    /***************************************************************************************/
-    /***************************************************************************************/
-    /***************************************************************************************/
-
     public function getId(): ?int
     {
         return $this->id;
@@ -115,7 +112,7 @@ class Zigorra
     public function addMaileguak(Mailegua $maileguak): self
     {
         if (!$this->maileguak->contains($maileguak)) {
-            $this->maileguak[] = $maileguak;
+            $this->maileguak->add($maileguak);
             $maileguak->setZigorra($this);
         }
 
@@ -145,7 +142,7 @@ class Zigorra
     public function addZigorrak(ErabiltzaileZigorra $zigorrak): self
     {
         if (!$this->zigorrak->contains($zigorrak)) {
-            $this->zigorrak[] = $zigorrak;
+            $this->zigorrak->add($zigorrak);
             $zigorrak->setZigorra($this);
         }
 

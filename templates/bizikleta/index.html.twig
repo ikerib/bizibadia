@@ -33,6 +33,7 @@
                                 <th>{{ "Bastidorea" | trans}}</th>
                                 <th>{{ "Alokatua" | trans}}</th>
                                 <th>{{ "Gunea" | trans}}</th>
+                                <th>{{ "Desgaitua" | trans}}</th>
                                 <th style="width: 20%"></th>
                             </tr>
                         </thead>
@@ -48,6 +49,13 @@
                                     {% endif %}
                                 </td>
                                 <td>{{ bizikletum.gunea }}</td>
+                                <td class="text-center">
+                                    {% if bizikletum.desgaituta %}
+                                        <span class="label label-success">Bai</span>
+                                    {% else %}
+                                        <span class="label label-danger">Ez</span>
+                                    {% endif %}
+                                </td>
                                 <td class="text-center">
                                     <ul class="list-inline">
                                         <li>

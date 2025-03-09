@@ -45,10 +45,6 @@ class Eguraldia
         $this->maileguak = new ArrayCollection();
     }
 
-    /***************************************************************************************/
-    /***************************************************************************************/
-    /***************************************************************************************/
-
     public function getId(): ?int
     {
         return $this->id;
@@ -89,7 +85,7 @@ class Eguraldia
     public function addMaileguak(Mailegua $maileguak): self
     {
         if (!$this->maileguak->contains($maileguak)) {
-            $this->maileguak[] = $maileguak;
+            $this->maileguak->add($maileguak);
             $maileguak->setEguraldia($this);
         }
 

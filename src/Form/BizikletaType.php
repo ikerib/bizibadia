@@ -34,6 +34,10 @@ class BizikletaType extends AbstractType
             ->add('notes', CKEditorType::class, [
                 'label' => 'Oharrak',
             ])
+            ->add('desgaituta', null, [
+                'label' => 'Hau markatuz gero biziketa hau bajan ematen ta eta ez eskuragarri egongo',
+                'required' => false
+            ])
         ;
     }
 

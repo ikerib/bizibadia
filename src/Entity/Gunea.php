@@ -6,6 +6,7 @@ use ApiPlatform\Core\Annotation\ApiResource;
 use App\Repository\GuneaRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 use Symfony\Component\Serializer\Annotation\Groups;
@@ -79,10 +80,6 @@ class Gunea
     {
         return $this->name;
     }
-
-    /***************************************************************************************/
-    /***************************************************************************************/
-    /***************************************************************************************/
 
     public function getId(): ?int
     {
@@ -184,7 +181,7 @@ class Gunea
     public function addBizikletak(Bizikleta $bizikletak): self
     {
         if (!$this->bizikletak->contains($bizikletak)) {
-            $this->bizikletak[] = $bizikletak;
+            $this->bizikletak->add($bizikletak);
             $bizikletak->setGunea($this);
         }
 
@@ -214,7 +211,7 @@ class Gunea
     public function addMaileguak(Mailegua $maileguak): self
     {
         if (!$this->maileguak->contains($maileguak)) {
-            $this->maileguak[] = $maileguak;
+            $this->maileguak->add($maileguak);
             $maileguak->setStartGunea($this);
         }
 

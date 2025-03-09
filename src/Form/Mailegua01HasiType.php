@@ -35,6 +35,7 @@ class Mailegua01HasiType extends AbstractType
                     return $er->createQueryBuilder('b')
                         ->innerJoin('b.udala', 'udala')
                         ->andWhere('udala.id=:udalaid')->setParameter('udalaid', $user->getUdala()->getId())
+                        ->andWhere('b.desgaituta = false OR b.desgaituta IS NULL')
                         ->orderBy('b.code', 'ASC');
                 },
                 'placeholder' => 'Aukeratu alokatuko duen bizikleta',

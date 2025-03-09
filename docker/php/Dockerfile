@@ -15,7 +15,7 @@ WORKDIR /usr/src/app
 
 # 3 Install Additional dependencies
 RUN apk update && apk add --no-cache \
-    build-base shadow vim curl bash \
+    build-base shadow vim curl bash linux-headers \
     zip libzip-dev \
     libjpeg-turbo-dev \
     libpng-dev \

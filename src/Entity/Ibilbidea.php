@@ -45,10 +45,6 @@ class Ibilbidea
         return $this->name;
     }
 
-    /***************************************************************************************/
-    /***************************************************************************************/
-    /***************************************************************************************/
-
     public function getId(): ?int
     {
         return $this->id;
@@ -89,7 +85,7 @@ class Ibilbidea
     public function addMaileguak(Mailegua $maileguak): self
     {
         if (!$this->maileguak->contains($maileguak)) {
-            $this->maileguak[] = $maileguak;
+            $this->maileguak->add($maileguak);
             $maileguak->setIbilbidea($this);
         }
 

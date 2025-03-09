@@ -3,6 +3,7 @@
 namespace App\Entity;
 
 use App\Repository\ErabiltzaileZigorraRepository;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Gedmo\Timestampable\Traits\TimestampableEntity;
 
@@ -37,10 +38,6 @@ class ErabiltzaileZigorra
     {
         return (string)$this->zigorra;
     }
-
-    /***************************************************************************************/
-    /***************************************************************************************/
-    /***************************************************************************************/
 
     public function getId(): ?int
     {
